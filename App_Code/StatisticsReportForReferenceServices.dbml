@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StatisticsReportForReferenceServices" Class="StatisticsReportForReferenceServicesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=sql-clus;Initial Catalog=StatisticsReportForReferenceServices;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StatisticsReportForReferenceServicesConnectionString" Provider="System.Data.SqlClient" />
+  <Function Name="dbo.GetAllDepartments" Method="GetAllDepartments">
+    <ElementType Name="GetAllDepartmentsResult">
+      <Column Name="Department_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Department_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Department_Domain" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.UsersSearch" Method="UsersSearch">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="UsersSearchResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetAllUsers" Method="GetAllUsers">
+    <ElementType Name="GetAllUsersResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetRealDepartments" Method="GetRealDepartments">
+    <ElementType Name="GetRealDepartmentsResult">
+      <Column Name="Department_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Department_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Department_Domain" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetRoleByUserID" Method="GetRoleByUserID">
+    <Parameter Name="USER_ID" Parameter="uSER_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="GetRoleByUserIDResult">
+      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getVistorByID" Method="getVistorByID">
+    <Parameter Name="Vistor_ID" Parameter="vistor_ID" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="getVistorByIDResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NationalID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.IsValidUser" Method="IsValidUser">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="IsValidUserResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ItemsSearch" Method="ItemsSearch">
+    <Parameter Name="Number" Parameter="number" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Customer_Name" Parameter="customer_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Customer_Gender" Parameter="customer_Gender" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Send_Method" Parameter="send_Method" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Language" Parameter="language" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Search_Type" Parameter="search_Type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.DateTime" DbType="Date" />
+    <Parameter Name="IsBook" Parameter="isBook" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsArticle" Parameter="isArticle" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsThesis" Parameter="isThesis" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsDocument" Parameter="isDocument" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsImage" Parameter="isImage" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsManuscript" Parameter="isManuscript" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NumOfItems" Parameter="numOfItems" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumOfPages" Parameter="numOfPages" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ItemsSearchResult">
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer_Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Finsh_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Period" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Send_Method" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Language" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Search_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Degree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Vistor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsBook" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsArticle" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsThesis" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDocument" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsManuscript" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NumOfItems" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumOfPages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.ItemsSearchWithUsers" Method="ItemsSearchWithUsers">
+    <Parameter Name="Number" Parameter="number" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Customer_Name" Parameter="customer_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Customer_Gender" Parameter="customer_Gender" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Send_Method" Parameter="send_Method" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Language" Parameter="language" Type="System.Int32" DbType="Int" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DepartmentID" Parameter="departmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="IsBook" Parameter="isBook" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsArticle" Parameter="isArticle" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsThesis" Parameter="isThesis" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsDocument" Parameter="isDocument" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsImage" Parameter="isImage" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsManuscript" Parameter="isManuscript" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NumOfItems" Parameter="numOfItems" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumOfPages" Parameter="numOfPages" Type="System.Int32" DbType="Int" />
+    <ElementType Name="ItemsSearchWithUsersResult">
+      <Column Name="Number" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Customer_Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Customer_Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Finsh_date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Period" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Send_Method" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Language" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Search_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Degree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Department_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Vistor_ID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IsBook" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsArticle" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsThesis" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDocument" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsManuscript" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NumOfItems" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumOfPages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.LogErrorAdd" Method="LogErrorAdd">
+    <Parameter Name="Message" Parameter="message" Type="System.String" DbType="NVarChar(MAX)" />
+    <Parameter Name="SatckTrace" Parameter="satckTrace" Type="System.String" DbType="NVarChar(MAX)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.StatisticsSearch" Method="StatisticsSearch">
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Gender" Parameter="gender" Type="System.Int32" DbType="Int" />
+    <Parameter Name="DepartmentId" Parameter="departmentId" Type="System.Int32" DbType="Int" />
+    <ElementType Name="StatisticsSearchResult">
+      <Column Name="Customer_Gender" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Period" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Send_Method" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Language" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Search_Type" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Degree" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="IsBook" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsArticle" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsThesis" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsDocument" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsImage" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="IsManuscript" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="NumOfItems" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NumOfPages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.User_Is_LockedEdit" Method="User_Is_LockedEdit">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UsersAdd" Method="UsersAdd">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="User_Role" Parameter="user_Role" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DepartmentID" Parameter="departmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UsersDelete" Method="UsersDelete">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.UsersEdit" Method="UsersEdit">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="User_Name" Parameter="user_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="User_Role" Parameter="user_Role" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="DepartmentID" Parameter="departmentID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ItemsAdd" Method="ItemsAdd">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Vistor_ID" Parameter="vistor_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Customer_Name" Parameter="customer_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Customer_Gender" Parameter="customer_Gender" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Send_Method" Parameter="send_Method" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Language" Parameter="language" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Search_Type" Parameter="search_Type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Degree" Parameter="degree" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="IsBook" Parameter="isBook" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsArticle" Parameter="isArticle" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsThesis" Parameter="isThesis" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsDocument" Parameter="isDocument" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsImage" Parameter="isImage" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsManuscript" Parameter="isManuscript" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NumOfItems" Parameter="numOfItems" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumOfPages" Parameter="numOfPages" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Parameter Name="Number" Parameter="number" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.ItemsEdit" Method="ItemsEdit">
+    <Parameter Name="Number" Parameter="number" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Vistor_ID" Parameter="vistor_ID" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Customer_Name" Parameter="customer_Name" Type="System.String" DbType="NVarChar(255)" />
+    <Parameter Name="Customer_Gender" Parameter="customer_Gender" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Period" Parameter="period" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Send_Method" Parameter="send_Method" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Language" Parameter="language" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Search_Type" Parameter="search_Type" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Degree" Parameter="degree" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Mobile" Parameter="mobile" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="IsBook" Parameter="isBook" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsArticle" Parameter="isArticle" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsThesis" Parameter="isThesis" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsDocument" Parameter="isDocument" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsImage" Parameter="isImage" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="IsManuscript" Parameter="isManuscript" Type="System.Boolean" DbType="Bit" />
+    <Parameter Name="NumOfItems" Parameter="numOfItems" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NumOfPages" Parameter="numOfPages" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>
