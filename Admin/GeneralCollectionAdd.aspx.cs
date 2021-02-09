@@ -105,19 +105,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //popupDatepickerEnd.Value = string.Empty;
         hfVistorID.Value = string.Empty;
         lblGender.Text = "ذكر";
-        rblDegree.SelectedValue = "0";
-        rblLang.SelectedValue = "0";
-        rblMethod.SelectedValue = "0";
-        rblPreiod.SelectedValue = "0";
-        rblSearchType.SelectedValue = "0";
-        txtNumberOfItems.Value = string.Empty;
-        txtNumberOfPages.Value = string.Empty;
-        ckItemType.Items[0].Selected = false;
-        ckItemType.Items[1].Selected = false;
-        ckItemType.Items[2].Selected = false;
-        ckItemType.Items[3].Selected = false;
-        ckItemType.Items[4].Selected = false;
-        ckItemType.Items[5].Selected = false;
+        ddlCounter.SelectedValue = "0";
+        
     }
     private int?[] insert()
     {
@@ -135,30 +124,15 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //{
         //    endDate = null;
         //}
-        int? numberOfItems = ToNullableInt(txtNumberOfItems.Value.ToString());
-        int? numberOfPages = ToNullableInt(txtNumberOfPages.Value.ToString());
+        int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
+        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
 
 
-
-        new StatisticsReportForReferenceServicesDataContext().ItemsAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
-            hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),
-            startDate, null,
-            int.Parse(rblPreiod.SelectedValue.ToString()),
-            int.Parse(rblMethod.SelectedValue.ToString()),
-            int.Parse(rblLang.SelectedValue.ToString()),
-            int.Parse(rblSearchType.SelectedValue.ToString()),
-            int.Parse(rblDegree.SelectedValue.ToString()),
-            hfMobile.Value.ToString(),
-            ckItemType.Items[0].Selected,
-            ckItemType.Items[1].Selected,
-            ckItemType.Items[2].Selected,
-            ckItemType.Items[3].Selected,
-            ckItemType.Items[4].Selected,
-            ckItemType.Items[5].Selected,
-            numberOfItems,
-            numberOfPages,
-            ref result, ref itemID);
-        int?[] arr = { result, itemID };
+       var q=  new StatisticsReportForReferenceServicesDataContext().GeneralCollectionAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
+            hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),counterNo,
+            startDate, numOfbooks,
+            ref result).Single<GeneralCollectionAddResult>();
+        int?[] arr = { result, q.ID};
         return arr;
     }
     private int? edit()
@@ -175,8 +149,9 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //{
         //    endDate = null;
         //}
-        int? numberOfItems = ToNullableInt(txtNumberOfItems.Value.ToString());
-        int? numberOfPages = ToNullableInt(txtNumberOfPages.Value.ToString());
+
+        int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
+        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
         if (lblGender.Text.Equals("ذكر"))
         {
             gender = 1;
@@ -186,7 +161,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().ItemsEdit(int.Parse(Request["num"].ToString()), int.Parse(hfVistorID.Value.ToString()), txtUserName.Value.ToString(), gender, startDate, null, int.Parse(rblPreiod.SelectedValue.ToString()), int.Parse(rblMethod.SelectedValue.ToString()), int.Parse(rblLang.SelectedValue.ToString()), int.Parse(rblSearchType.SelectedValue.ToString()), int.Parse(rblDegree.SelectedValue.ToString()), txtMobile.Value.ToString(),
+        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()), txtUserName.Value.ToString(), int.Parse(hfVistorID.Value.ToString()), gender, startDate, null, int.Parse(rblPreiod.SelectedValue.ToString()), int.Parse(rblMethod.SelectedValue.ToString()), int.Parse(rblLang.SelectedValue.ToString()), int.Parse(rblSearchType.SelectedValue.ToString()), int.Parse(rblDegree.SelectedValue.ToString()), txtMobile.Value.ToString(),
             ckItemType.Items[0].Selected,
             ckItemType.Items[1].Selected,
             ckItemType.Items[2].Selected,

@@ -228,7 +228,7 @@
                                         </div>
                                     </div>
                                     <div class="tab-pane" id="tab2">
-                                        <h4>خطوة 2 <strong>التواريخ</strong></h4>
+                                        <h4>خطوة 2 <strong>تفاصيل الخدمة</strong></h4>
                                         <div class="control-group">
                                             <label class="control-label">تاريخ الإستلام *</label>
                                             <div class="controls">
@@ -244,92 +244,41 @@
                                                 <span id="lblDateError" style="visibility: hidden">يجب ان يكون تاريخ الاستلام اقل من تاريخ الانتهاء</span>
                                             </div>
                                         </div>--%>
-                                    </div>
+                                        <div class="control-group">
+                                            <label class="control-label">رقم الكاونتر *</label>
+                                            <div class="controls">
+                                                <asp:DropDownList ID="ddlCounter" runat="server">
+                                                    <asp:ListItem Text ="كاونتر 1" Value ="1" />
+                                                    <asp:ListItem Text ="كاونتر 2" Value ="2" />
+                                                    <asp:ListItem Text ="كاونتر 3" Value ="3" />
+                                                    <asp:ListItem Text ="كاونتر 4" Value ="4" />
+                                                    <asp:ListItem Text ="كاونتر 5" Value ="5" />
+                                                    <asp:ListItem Text ="كاونتر 6" Value ="6" />
+                                                   
+                                                </asp:DropDownList>
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب ادخال عدد الكتب المستخرجة " ControlToValidate="txtNoOfBooks" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
 
-                                    <div class="tab-pane" id="tab3">
-                                        <h4>الخطوة الأخيرة</h4>
-                                        <div class="control-group">
-                                            <label class="control-label">التخصص العلمي *</label>
-                                            <div class="controls">
-                                                <asp:RadioButtonList ID="rblDegree" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="دكتوراه" Value="0" Selected="True" />
-                                                    <asp:ListItem Text="ماجستير" Value="1" />
-                                                    <asp:ListItem Text="جامعي" Value="2" />
-                                                    <asp:ListItem Text="اخري" Value="3" />
-                                                </asp:RadioButtonList>
                                             </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">الفترة *</label>
+                                            <label class="control-label">عدد الكتب المستخرجة *</label>
                                             <div class="controls">
-                                                <asp:RadioButtonList ID="rblPreiod" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="الصباحية" Value="0" Selected="True" />
-                                                    <asp:ListItem Text="المسائية" Value="1" />
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">طريقة الإرسال *</label>
-                                            <div class="controls">
-                                                <asp:RadioButtonList ID="rblMethod" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="مناولة" Value="0" Selected="True">
-                                                    </asp:ListItem>
-                                                    <asp:ListItem Text="بريد" Value="1"></asp:ListItem>
-                                                    <asp:ListItem Text="بريد الكتروني" Value="2"></asp:ListItem>
-                                                    <asp:ListItem Text="خدمة ذاتية" Value="3"></asp:ListItem>
-                                                    <asp:ListItem Text="هاتف" Value="4"></asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">اللغة *</label>
-                                            <div class="controls">
-                                                <asp:RadioButtonList ID="rblLang" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="عربي" Value="0" Selected="True">
-                                                    </asp:ListItem>
-                                                    <asp:ListItem Text="انجليزي" Value="1"></asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">نوع البحث *</label>
-                                            <div class="controls">
-                                                <asp:RadioButtonList ID="rblSearchType" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="الفهرس" Value="0" Selected="True">
-                                                    </asp:ListItem>
-                                                    <asp:ListItem Text="مصادر المعلومات" Value="1"></asp:ListItem>
-                                                </asp:RadioButtonList>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">نوع الوعاء</label>
-                                            <div class="controls">
-                                                <asp:CheckBoxList ID="ckItemType" runat="server" CssClass="span6 rblStyle" RepeatDirection="Horizontal">
-                                                    <asp:ListItem Text="كتب"></asp:ListItem>
-                                                    <asp:ListItem Text="مقالات"></asp:ListItem>
-                                                    <asp:ListItem Text="رسائل"></asp:ListItem>
-                                                    <asp:ListItem Text="وثائق"></asp:ListItem>
-                                                    <asp:ListItem Text="صور"></asp:ListItem>
-                                                    <asp:ListItem Text="مخوطات"></asp:ListItem>
-                                                </asp:CheckBoxList>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">عدد الأوعية</label>
-                                            <div class="controls">
-                                                <input id="txtNumberOfItems" name="txtNumberOfPages" runat="server" type="text" class="span1">
-                                                <asp:RegularExpressionValidator ID="ervtxtNumberOfItems" ControlToValidate="txtNumberOfItems" ValidationExpression="(^[0-9]+$|^$)" runat="server" ErrorMessage="من فضلك ادخل رقم صحيح او اترك الحقل فارخ" ValidationGroup="AddGroup"></asp:RegularExpressionValidator>
-                                            </div>
+                                                <input type="text" class="span6" id="Text1" runat="server" name="txtNoOfBooks" />
+                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب ادخال عدد الكتب المستخرجة " ControlToValidate="txtNoOfBooks" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
 
+                                            </div>
                                         </div>
                                         <div class="control-group">
-                                            <label class="control-label">عدد الصفحات</label>
+                                            <label class="control-label">عدد الكتب المستخرجة *</label>
                                             <div class="controls">
-                                                <input id="txtNumberOfPages" name="txtNumberOfPages" runat="server" type="text" class="span1">
-                                                <asp:RegularExpressionValidator ID="revtxtNumberOfPages" ControlToValidate="txtNumberOfPages" ValidationExpression="(^[0-9]+$|^$)" runat="server" ErrorMessage="من فضلك ادخل رقم صحيح او اترك الحقل فارخ" ValidationGroup="AddGroup"></asp:RegularExpressionValidator>
+                                                <input type="text" class="span6" id="txtNoOfBooks" runat="server" name="txtNoOfBooks" />
+                                                <asp:RequiredFieldValidator ID="rfvtxtNoOfBooks" runat="server" ErrorMessage="يجب ادخال عدد الكتب المستخرجة " ControlToValidate="txtNoOfBooks" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
+
                                             </div>
                                         </div>
                                     </div>
+
+                           
                                 </div>
                                 <div class="form-actions clearfix">
                                     <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-success button-submit" ValidationGroup="AddGroup">حفظ<i class="fa fa-check"></i></asp:LinkButton>

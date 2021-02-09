@@ -268,16 +268,17 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 	}
 	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionAdd")]
-	public ISingleResult<GeneralCollectionAddResult> GeneralCollectionAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Creation_Date", DbType="DateTime")] System.Nullable<System.DateTime> creation_Date)
+	public ISingleResult<GeneralCollectionAddResult> GeneralCollectionAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date, noBooks, creation_Date);
-		return ((ISingleResult<GeneralCollectionAddResult>)(result.ReturnValue));
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date, noBooks, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(7)));
+		return ((ISingleResult<GeneralCollectionAddResult>)(result1.ReturnValue));
 	}
 	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionSearch")]
-	public ISingleResult<GeneralCollectionSearchResult> GeneralCollectionSearch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date)
+	public ISingleResult<GeneralCollectionSearchResult> GeneralCollectionSearch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date);
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date);
 		return ((ISingleResult<GeneralCollectionSearchResult>)(result.ReturnValue));
 	}
 	
@@ -289,9 +290,9 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 	}
 	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionEdit")]
-	public ISingleResult<GeneralCollectionEditResult> GeneralCollectionEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Creation_Date", DbType="DateTime")] System.Nullable<System.DateTime> creation_Date)
+	public ISingleResult<GeneralCollectionEditResult> GeneralCollectionEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date, noBooks, creation_Date);
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date, noBooks);
 		return ((ISingleResult<GeneralCollectionEditResult>)(result.ReturnValue));
 	}
 }
@@ -2043,13 +2044,13 @@ public partial class GeneralCollectionAddResult
 	
 	private string _Vistor_Name;
 	
+	private System.Nullable<int> _Gender;
+	
 	private System.Nullable<int> _Counter_ID;
 	
 	private System.Nullable<System.DateTime> _Receive_Date;
 	
 	private System.Nullable<int> _NoBooks;
-	
-	private System.Nullable<System.DateTime> _Creation_Date;
 	
 	public GeneralCollectionAddResult()
 	{
@@ -2119,6 +2120,22 @@ public partial class GeneralCollectionAddResult
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
+			}
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Counter_ID", DbType="Int")]
 	public System.Nullable<int> Counter_ID
 	{
@@ -2166,22 +2183,6 @@ public partial class GeneralCollectionAddResult
 			}
 		}
 	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
-	public System.Nullable<System.DateTime> Creation_Date
-	{
-		get
-		{
-			return this._Creation_Date;
-		}
-		set
-		{
-			if ((this._Creation_Date != value))
-			{
-				this._Creation_Date = value;
-			}
-		}
-	}
 }
 
 public partial class GeneralCollectionSearchResult
@@ -2194,6 +2195,8 @@ public partial class GeneralCollectionSearchResult
 	private System.Nullable<int> _Vistor_ID;
 	
 	private string _Vistor_Name;
+	
+	private System.Nullable<int> _Gender;
 	
 	private System.Nullable<int> _Counter_ID;
 	
@@ -2267,6 +2270,22 @@ public partial class GeneralCollectionSearchResult
 			if ((this._Vistor_Name != value))
 			{
 				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
 			}
 		}
 	}
@@ -2347,6 +2366,8 @@ public partial class GeneralCollectionEditResult
 	
 	private string _Vistor_Name;
 	
+	private System.Nullable<int> _Gender;
+	
 	private System.Nullable<int> _Counter_ID;
 	
 	private System.Nullable<System.DateTime> _Receive_Date;
@@ -2419,6 +2440,22 @@ public partial class GeneralCollectionEditResult
 			if ((this._Vistor_Name != value))
 			{
 				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
 			}
 		}
 	}
