@@ -266,6 +266,34 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		result = ((System.Nullable<int>)(result1.GetParameterValue(20)));
 		return ((int)(result1.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionAdd")]
+	public ISingleResult<GeneralCollectionAddResult> GeneralCollectionAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Creation_Date", DbType="DateTime")] System.Nullable<System.DateTime> creation_Date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date, noBooks, creation_Date);
+		return ((ISingleResult<GeneralCollectionAddResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionSearch")]
+	public ISingleResult<GeneralCollectionSearchResult> GeneralCollectionSearch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date);
+		return ((ISingleResult<GeneralCollectionSearchResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionDelete")]
+	public int GeneralCollectionDelete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+		return ((int)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionEdit")]
+	public ISingleResult<GeneralCollectionEditResult> GeneralCollectionEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Creation_Date", DbType="DateTime")] System.Nullable<System.DateTime> creation_Date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, counter_ID, receive_Date, noBooks, creation_Date);
+		return ((ISingleResult<GeneralCollectionEditResult>)(result.ReturnValue));
+	}
 }
 
 public partial class GetAllDepartmentsResult
@@ -1999,6 +2027,462 @@ public partial class StatisticsSearchResult
 			if ((this._NumOfPages != value))
 			{
 				this._NumOfPages = value;
+			}
+		}
+	}
+}
+
+public partial class GeneralCollectionAddResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _Counter_ID;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	public GeneralCollectionAddResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Counter_ID", DbType="Int")]
+	public System.Nullable<int> Counter_ID
+	{
+		get
+		{
+			return this._Counter_ID;
+		}
+		set
+		{
+			if ((this._Counter_ID != value))
+			{
+				this._Counter_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+}
+
+public partial class GeneralCollectionSearchResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _Counter_ID;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	public GeneralCollectionSearchResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Counter_ID", DbType="Int")]
+	public System.Nullable<int> Counter_ID
+	{
+		get
+		{
+			return this._Counter_ID;
+		}
+		set
+		{
+			if ((this._Counter_ID != value))
+			{
+				this._Counter_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+}
+
+public partial class GeneralCollectionEditResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _Counter_ID;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	public GeneralCollectionEditResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Counter_ID", DbType="Int")]
+	public System.Nullable<int> Counter_ID
+	{
+		get
+		{
+			return this._Counter_ID;
+		}
+		set
+		{
+			if ((this._Counter_ID != value))
+			{
+				this._Counter_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
 			}
 		}
 	}
