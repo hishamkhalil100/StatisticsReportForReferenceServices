@@ -290,10 +290,11 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 	}
 	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionEdit")]
-	public ISingleResult<GeneralCollectionEditResult> GeneralCollectionEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks)
+	public ISingleResult<GeneralCollectionEditResult> GeneralCollectionEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
 	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date, noBooks);
-		return ((ISingleResult<GeneralCollectionEditResult>)(result.ReturnValue));
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date, noBooks, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(8)));
+		return ((ISingleResult<GeneralCollectionEditResult>)(result1.ReturnValue));
 	}
 }
 

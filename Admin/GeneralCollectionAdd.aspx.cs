@@ -161,15 +161,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()), txtUserName.Value.ToString(), int.Parse(hfVistorID.Value.ToString()), gender, startDate, null, int.Parse(rblPreiod.SelectedValue.ToString()), int.Parse(rblMethod.SelectedValue.ToString()), int.Parse(rblLang.SelectedValue.ToString()), int.Parse(rblSearchType.SelectedValue.ToString()), int.Parse(rblDegree.SelectedValue.ToString()), txtMobile.Value.ToString(),
-            ckItemType.Items[0].Selected,
-            ckItemType.Items[1].Selected,
-            ckItemType.Items[2].Selected,
-            ckItemType.Items[3].Selected,
-            ckItemType.Items[4].Selected,
-            ckItemType.Items[5].Selected,
-            numberOfItems,
-            numberOfPages, ref result);
+        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()),  txtUserName.Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString, gender,counterNo,  startDate, numOfbooks, ref result);
         return result;
     }
     private string invertDate(string date)
@@ -195,8 +187,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.ItemsSearchWithUsers(int.Parse(Request["num"].ToString()), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).Single<ItemsSearchWithUsersResult>();
-            txtUserName.Value = q.Customer_Name.ToString();
+            var q = srfs.GeneralCollectionSearch(int.Parse(Request["num"].ToString()), null, null, null, null, null, null).Single<GeneralCollectionSearchResult>();
+            txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.Mobile.ToString();
             rblDegree.SelectedValue = q.Degree.ToString();
             //rblGender.SelectedValue = q.Customer_Gender.ToString();

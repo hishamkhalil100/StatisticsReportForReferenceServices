@@ -311,6 +311,7 @@
     <Parameter Name="Counter_ID" Parameter="counter_ID" Type="System.Int32" DbType="Int" />
     <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="NoBooks" Parameter="noBooks" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
     <ElementType Name="GeneralCollectionEditResult">
       <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
