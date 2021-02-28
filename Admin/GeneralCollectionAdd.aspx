@@ -164,15 +164,10 @@
                                             <li class="span4">
                                                 <a href="#tab2" data-toggle="tab" class="step">
                                                     <span class="number">2</span>
-                                                    <span class="desc"><i class="icon-ok"></i>التواريخ</span>
-                                                </a>
-                                            </li>
-                                            <li class="span4">
-                                                <a href="#tab3" data-toggle="tab" class="step">
-                                                    <span class="number">3</span>
                                                     <span class="desc"><i class="icon-ok"></i>الخطوة الأخيرة</span>
                                                 </a>
                                             </li>
+                                            
                                         </ul>
                                     </div>
                                 </div>
@@ -260,14 +255,7 @@
 
                                             </div>
                                         </div>
-                                        <div class="control-group">
-                                            <label class="control-label">عدد الكتب المستخرجة *</label>
-                                            <div class="controls">
-                                                <input type="text" class="span6" id="Text1" runat="server" name="txtNoOfBooks" />
-                                                <asp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="يجب ادخال عدد الكتب المستخرجة " ControlToValidate="txtNoOfBooks" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
-
-                                            </div>
-                                        </div>
+                                        
                                         <div class="control-group">
                                             <label class="control-label">عدد الكتب المستخرجة *</label>
                                             <div class="controls">

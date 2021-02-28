@@ -46,7 +46,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             {
                 if (result == 1)
                 {
-                    Response.Redirect("ItemsAdd.aspx");
+                    Response.Redirect("GeneralCollectionAdd.aspx");
                     divNotifi.Visible = true;
                     divNotifi.Attributes.Add("class", "alert alert-block alert-success fade in");
                     lblDivNotifiTitle.Text = "تم !";
@@ -106,6 +106,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         hfVistorID.Value = string.Empty;
         lblGender.Text = "ذكر";
         ddlCounter.SelectedValue = "0";
+        txtNoOfBooks.Value = string.Empty;
         
     }
     private int?[] insert()
@@ -128,9 +129,9 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
 
 
-       var q=  new StatisticsReportForReferenceServicesDataContext().GeneralCollectionAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
+        var q = new StatisticsReportForReferenceServicesDataContext().GeneralCollectionAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
             hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),counterNo,
-            startDate, numOfbooks,
+            startDate, numOfbooks, hfMobile.Value.ToString(),
             ref result).Single<GeneralCollectionAddResult>();
         int?[] arr = { result, q.ID};
         return arr;
@@ -161,7 +162,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()),  txtUserName.Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString, gender,counterNo,  startDate, numOfbooks, ref result);
+        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(), gender,counterNo,  startDate, numOfbooks, hfMobile.Value.ToString(), ref result);
         return result;
     }
     private string invertDate(string date)
@@ -187,13 +188,15 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.GeneralCollectionSearch(int.Parse(Request["num"].ToString()), null, null, null, null, null, null).Single<GeneralCollectionSearchResult>();
+            var q = srfs.GeneralCollectionSearch(int.Parse(Request["num"].ToString()), null, null, null, null, null,null, null).Single<GeneralCollectionSearchResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
-            txtMobile.Value = q.Mobile.ToString();
-            rblDegree.SelectedValue = q.Degree.ToString();
+            txtMobile.Value = q.MobileNo.ToString();
+            ddlCounter.SelectedValue = q.Counter_ID.ToString();
+            txtUserCode.Value = q.Vistor_ID.ToString();
+            txtNoOfBooks.Value = q.NoBooks.ToString();
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
-            if (q.Customer_Gender == 1)
+            if (q.Gender == 1)
             {
                 lblGender.Text = "ذكر";
 
@@ -203,31 +206,24 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                 lblGender.Text = "انثى";
             }
             txtSearch.Value = q.Vistor_ID.ToString();
-            rblLang.SelectedValue = q.Language.ToString();
-            rblMethod.SelectedValue = q.Send_Method.ToString();
-            rblPreiod.SelectedValue = q.Period.ToString();
-            rblSearchType.SelectedValue = q.Search_Type.ToString();
+           
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
             hfVistorID.Value = q.Vistor_ID.ToString();
-            txtNumberOfItems.Value = q.NumOfItems.ToString();
-            txtNumberOfPages.Value = q.NumOfPages.ToString();
-            ckItemType.Items[0].Selected = q.IsBook;
-            ckItemType.Items[1].Selected = q.IsArticle;
-            ckItemType.Items[2].Selected = q.IsThesis;
-            ckItemType.Items[3].Selected = q.IsDocument;
-            ckItemType.Items[4].Selected = q.IsImage;
-            ckItemType.Items[5].Selected = q.IsManuscript;
+            hfName.Value = q.Vistor_Name;
+            hfMobile.Value = q.MobileNo;
 
         }
         else
         {
-            var q = srfs.ItemsSearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).Single<ItemsSearchWithUsersResult>();
-            txtUserName.Value = q.Customer_Name.ToString();
-            txtMobile.Value = q.Mobile.ToString();
-            rblDegree.SelectedValue = q.Degree.ToString();
+            var q = srfs.GeneralCollectionSearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null,null,null).Single<GeneralCollectionSearchWithUsersResult>();
+            txtUserName.Value = q.Vistor_Name.ToString();
+            txtMobile.Value = q.MobileNo.ToString();
+            ddlCounter.SelectedValue = q.Counter_ID.ToString();
+            txtUserCode.Value = q.Vistor_ID.ToString();
+            txtNoOfBooks.Value = q.NoBooks.ToString();
 
-            if (q.Customer_Gender == 1)
+            if (q.Gender == 1)
             {
                 lblGender.Text = "ذكر";
 
@@ -237,20 +233,11 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                 lblGender.Text = "انثى";
             }
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
-            rblLang.SelectedValue = q.Language.ToString();
-            rblMethod.SelectedValue = q.Send_Method.ToString();
-            rblPreiod.SelectedValue = q.Period.ToString();
-            rblSearchType.SelectedValue = q.Search_Type.ToString();
+           
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-            txtNumberOfItems.Value = q.NumOfItems.ToString();
-            txtNumberOfPages.Value = q.NumOfPages.ToString();
-            ckItemType.Items[0].Selected = q.IsBook;
-            ckItemType.Items[1].Selected = q.IsArticle;
-            ckItemType.Items[2].Selected = q.IsThesis;
-            ckItemType.Items[3].Selected = q.IsDocument;
-            ckItemType.Items[4].Selected = q.IsImage;
-            ckItemType.Items[5].Selected = q.IsManuscript;
+            hfName.Value = q.Vistor_Name;
+            hfMobile.Value = q.MobileNo;
         }
     }
 
