@@ -445,4 +445,138 @@
       <Column Name="MobileNo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.BooksReceivedAdd" Method="BooksReceivedAdd">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="NoCopy" Parameter="noCopy" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoTitle" Parameter="noTitle" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="BooksReceivedAddResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoCopy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoTitle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BooksReceivedSerach" Method="BooksReceivedSerach">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="BooksReceivedSerachResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoCopy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoTitle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BooksReceivedDelete" Method="BooksReceivedDelete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.BooksReceivedEdit" Method="BooksReceivedEdit">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="NoCopy" Parameter="noCopy" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoTitle" Parameter="noTitle" Type="System.Int32" DbType="Int" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="BooksReceivedEditResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoCopy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoTitle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BooksReceivedSerachWithusers" Method="BooksReceivedSerachWithusers">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="BooksReceivedSerachWithusersResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoCopy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoTitle" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeAdd" Method="SortingAndOrgnizeAdd">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="NoReindex" Parameter="noReindex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoRelabel" Parameter="noRelabel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoBinding" Parameter="noBinding" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoExclude" Parameter="noExclude" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="SortingAndOrgnizeAddResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoReindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoRelabel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoBinding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoExclude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeSearchWithUsers" Method="SortingAndOrgnizeSearchWithUsers">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SortingAndOrgnizeSearchWithUsersResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoReindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoRelabel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoBinding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoExclude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeDelete" Method="SortingAndOrgnizeDelete">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeEdit" Method="SortingAndOrgnizeEdit">
+    <Parameter Name="ID" Parameter="iD" Type="System.Int32" DbType="Int" />
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="NoReindex" Parameter="noReindex" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoRelabel" Parameter="noRelabel" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoBinding" Parameter="noBinding" Type="System.Int32" DbType="Int" />
+    <Parameter Name="NoExclude" Parameter="noExclude" Type="System.String" DbType="NChar(10)" />
+    <Parameter Name="Creation_Date" Parameter="creation_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Result" Parameter="result" Type="System.Int32" DbType="Int" Direction="InOut" />
+    <ElementType Name="SortingAndOrgnizeEditResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoReindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoRelabel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoBinding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoExclude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeSearch" Method="SortingAndOrgnizeSearch">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SortingAndOrgnizeSearchResult">
+      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="Receive_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="NoReindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoRelabel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoBinding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NoExclude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
 </Database>
