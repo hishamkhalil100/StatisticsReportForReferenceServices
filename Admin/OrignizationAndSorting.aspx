@@ -167,7 +167,7 @@
                                                     <span class="desc"><i class="icon-ok"></i>الخطوة الأخيرة</span>
                                                 </a>
                                             </li>
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
@@ -239,15 +239,14 @@
                                                 <span id="lblDateError" style="visibility: hidden">يجب ان يكون تاريخ الاستلام اقل من تاريخ الانتهاء</span>
                                             </div>
                                         </div>--%>
-                                         <div class="control-group">
+                                        <div class="control-group">
                                             <label class="control-label">إعادة الفهرسة  *</label>
                                             <div class="controls">
                                                 <input type="text" class="span6" id="txtReindex" runat="server" name="txtReindex" />
                                                 <asp:RequiredFieldValidator ID="rfvtxtReindex" runat="server" ErrorMessage="يجب ادخال عدد الكتب المعاد فهرستها " ControlToValidate="txtReindex" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
-
                                             </div>
                                         </div>
-                                        
+
                                         <div class="control-group">
                                             <label class="control-label">إعادة تكعيب *</label>
                                             <div class="controls">
@@ -274,7 +273,7 @@
                                         </div>
                                     </div>
 
-                           
+
                                 </div>
                                 <div class="form-actions clearfix">
                                     <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-success button-submit" ValidationGroup="AddGroup">حفظ<i class="fa fa-check"></i></asp:LinkButton>

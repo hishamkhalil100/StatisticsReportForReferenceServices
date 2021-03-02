@@ -109,7 +109,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         txtExclude.Value = string.Empty;
         txtReindex.Value = string.Empty;
         txtRelabel.Value = string.Empty;
-        
+
     }
     private int?[] insert()
     {
@@ -134,10 +134,10 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 
 
         var q = new StatisticsReportForReferenceServicesDataContext().(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
-            hfName.Value.ToString(),numOfPages, startDate,numOfbooks, int.Parse(hfGender.Value.ToString()),
+            hfName.Value.ToString(), numOfPages, startDate, numOfbooks, int.Parse(hfGender.Value.ToString()),
               hfMobile.Value.ToString(),
             ref result).Single<PhotocopyAddResult>();
-        int?[] arr = { result, q.ID};
+        int?[] arr = { result, q.ID };
         return arr;
     }
     private int? edit()
@@ -166,7 +166,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(),numOfPages, startDate, numOfbooks, gender,hfMobile.Value.ToString(), ref result);
+        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()), hfName.Value.ToString(), numOfPages, startDate, numOfbooks, gender, hfMobile.Value.ToString(), ref result);
         return result;
     }
     private string invertDate(string date)
@@ -192,7 +192,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.PhotocopySearch(int.Parse(Request["num"].ToString()), null, null, null, null, null,null).Single<PhotocopySearchResult>();
+            var q = srfs.PhotocopySearch(int.Parse(Request["num"].ToString()), null, null, null, null, null, null).Single<PhotocopySearchResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.MobileNo.ToString();
             txtUserCode.Value = q.Vistor_ID.ToString();
@@ -212,7 +212,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
                 hfGender.Value = "0";
             }
             txtSearch.Value = q.Vistor_ID.ToString();
-           
+
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
             hfVistorID.Value = q.Vistor_ID.ToString();
@@ -222,7 +222,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         }
         else
         {
-            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null,null).Single<PhotocopySearchWithUsersResult>();
+            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null, null).Single<PhotocopySearchWithUsersResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.MobileNo.ToString();
             txtUserCode.Value = q.Vistor_ID.ToString();
@@ -238,7 +238,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
                 lblGender.Text = "انثى";
             }
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
-           
+
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
             hfName.Value = q.Vistor_Name;
