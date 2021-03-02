@@ -99,12 +99,10 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 
     private void reset()
     {
-        txtUserName.Value = string.Empty;
-        txtMobile.Value = string.Empty;
+       
         popupDatepicker.Value = string.Empty;
         //popupDatepickerEnd.Value = string.Empty;
-        hfVistorID.Value = string.Empty;
-        lblGender.Text = "ذكر";
+     
         txtBinding.Value = string.Empty;
         txtExclude.Value = string.Empty;
         txtReindex.Value = string.Empty;
@@ -114,8 +112,6 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
     private int?[] insert()
     {
         int? result = null;
-        int? itemID = null;
-
         DateHG cal = new DateHG();
         DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
@@ -133,10 +129,10 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
 
 
-        var q = new StatisticsReportForReferenceServicesDataContext().(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
-            hfName.Value.ToString(), numOfPages, startDate, numOfbooks, int.Parse(hfGender.Value.ToString()),
-              hfMobile.Value.ToString(),
-            ref result).Single<PhotocopyAddResult>();
+        var q = new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), startDate,
+              numOfReindex, numOfLabel, numOfRebinding,
+              numOfExclude,
+            ref result).Single<SortingAndOrgnizeAddResult>();
         int?[] arr = { result, q.ID };
         return arr;
     }
@@ -155,18 +151,15 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         //    endDate = null;
         //}
 
-        int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
-        int? numOfPages = ToNullableInt(txtNoOfPages.Value.ToString());
-        if (hfGender.Value.Equals("1"))
-        {
-            gender = 1;
+        int? numOfReindex = ToNullableInt(txtReindex.Value.ToString());
+        int? numOfRebinding = ToNullableInt(txtBinding.Value.ToString());
+        int? numOfLabel = ToNullableInt(txtRelabel.Value.ToString());
+        int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
 
-        }
-        else
-        {
-            gender = 0;
-        }
-        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()), hfName.Value.ToString(), numOfPages, startDate, numOfbooks, gender, hfMobile.Value.ToString(), ref result);
+       
+        new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeEdit(
+            int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(),
+            startDate, numOfReindex, numOfLabel, numOfRebinding, numOfExclude, ref result);
         return result;
     }
     private string invertDate(string date)
@@ -200,34 +193,21 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
             txtNoOfPages.Value = q.NoPages.ToString();
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
-            if (q.Gender == 1)
-            {
-                lblGender.Text = "ذكر";
-                hfGender.Value = "1";
-
-            }
-            else
-            {
-                lblGender.Text = "انثى";
-                hfGender.Value = "0";
-            }
-            txtSearch.Value = q.Vistor_ID.ToString();
 
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-            hfVistorID.Value = q.Vistor_ID.ToString();
-            hfName.Value = q.Vistor_Name;
-            hfMobile.Value = q.MobileNo;
+      
 
         }
         else
         {
             var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null, null).Single<PhotocopySearchWithUsersResult>();
-            txtUserName.Value = q.Vistor_Name.ToString();
-            txtMobile.Value = q.MobileNo.ToString();
-            txtUserCode.Value = q.Vistor_ID.ToString();
-            txtNoOfBooks.Value = q.NoBooks.ToString();
-            txtNoOfPages.Value = q.NoPages.ToString();
+          
+            int? numOfReindex = ToNullableInt(txtReindex.Value.ToString());
+            int? numOfRebinding = ToNullableInt(txtBinding.Value.ToString());
+            int? numOfLabel = ToNullableInt(txtRelabel.Value.ToString());
+            int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
+
             if (q.Gender == 1)
             {
                 lblGender.Text = "ذكر";

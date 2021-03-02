@@ -155,15 +155,10 @@
                                 <div class="navbar steps">
                                     <div class="navbar-inner">
                                         <ul class="row-fluid">
-                                            <li class="span4">
-                                                <a href="#tab1" data-toggle="tab" class="step active">
-                                                    <span class="number">1</span>
-                                                    <span class="desc"><i class="icon-ok"></i>معلومات المستفيد</span>
-                                                </a>
-                                            </li>
+                                           
                                             <li class="span4">
                                                 <a href="#tab2" data-toggle="tab" class="step">
-                                                    <span class="number">2</span>
+                                                    <span class="number">1</span>
                                                     <span class="desc"><i class="icon-ok"></i>الخطوة الأخيرة</span>
                                                 </a>
                                             </li>
@@ -175,54 +170,8 @@
                                     <div class="bar"></div>
                                 </div>
                                 <div class="tab-content">
-                                    <div class="tab-pane active" id="tab1">
-                                        <h4>خطوة 1 <strong>معلومات المستفيد</strong></h4>
-                                        <div class="control-group">
-                                            <asp:HiddenField ID="hfVistorID" runat="server" />
-                                            <asp:HiddenField ID="hfName" runat="server" />
-                                            <asp:HiddenField ID="hfMobile" runat="server" />
-                                            <asp:HiddenField ID="hfGender" runat="server" />
-                                            <label class="control-label">رقم العضوية / رقم الهوية</label>
-                                            <div class="controls">
-                                                <input id="txtSearch" name="txtSearch" runat="server" type="text" class="span6" />
-                                                <asp:RequiredFieldValidator ID="rfvtxtSearch" runat="server" ErrorMessage="يجب ادخل رقم العضوية / رقم الهوية" ControlToValidate="txtSearch" SetFocusOnError="true" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="control-label"></div>
-                                            <div class="controls">
-                                                <input id="btnsearch" type="button" class="btn-danger" value="بحث" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">اسم المستفيد *</label>
-                                            <div class="controls">
-                                                <input id="txtUserName" name="txtUserName" runat="server" type="text" class="span6" disabled="True" />
-                                                <asp:RequiredFieldValidator ID="rfvtxtUserName" runat="server" ErrorMessage="يجب ادخال اسم المستفيد" ControlToValidate="txtUserName" SetFocusOnError="true" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">رقم العضوية *</label>
-                                            <div class="controls">
-                                                <input id="txtUserCode" name="txtUserCode" runat="server" type="text" class="span6" disabled="True" />
-                                            </div>
-                                        </div>
-
-
-                                        <div class="control-group">
-                                            <label class="control-label">رقم الجوال</label>
-                                            <div class="controls">
-                                                <input id="txtMobile" name="txtMobile" runat="server" type="text" class="span6" disabled="True" />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <label class="control-label">الجنس *</label>
-                                            <div class="controls">
-                                                <asp:Label ID="lblGender" runat="server" Text="ذكر"></asp:Label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="tab-pane" id="tab2">
+                                    
+                                    <div class="tab-pane" id="tab1">
                                         <h4>خطوة 2 <strong>تفاصيل الخدمة</strong></h4>
                                         <div class="control-group">
                                             <label class="control-label">تاريخ الإستلام *</label>
@@ -326,68 +275,7 @@
             $(".divContent").hide();
             $(".bottom-wizard").hide();
             $(".h5Exist").hide()
-            var vistor;
-            $("#btnsearch").click(function () {
-                var results = new Array();
-
-                vistor = $("#<%=txtSearch.ClientID%>").val();
-                //Without array you can use like to construct JSON object  
-                // var results = { empList : [{ "ID": "1", "Name": "Manas" },   { "ID": "2", "Name": "Tester" }] };  
-
-
-
-                $.ajax({
-                    url: 'webservice.svc/getVistorByID',
-                    data: '{"id":"' + vistor + '"}',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    dataType: 'json',
-                    beforeSend: function () {
-
-                    },
-                    success: function (result) {
-                        $("#loadMe").modal("hide");
-                        $.each(result, function (index, emp) {
-                            if (result.error == "true") {
-                                alert("An error occurred: " & result.errorMessage);
-                            } else {
-                                if (emp.Name != "" && emp.Name != null) {
-
-                                    $("#<%=txtUserName.ClientID%>").val(emp.Name);
-                                    $('#<%=txtMobile.ClientID%>').val(emp.Mobile);
-                                    $('#<%=hfVistorID.ClientID%>').val(emp.vistor_id);
-                                    $('#<%=txtUserCode.ClientID%>').val(emp.vistor_id);
-                                    $("#<%=hfName.ClientID%>").val(emp.Name);
-                                    $('#<%=hfMobile.ClientID%>').val(emp.Mobile);
-                                    if (!emp.Gender) {
-                                        //  $('input[name="ctl00$ContentPlaceHolder1$rblGender"][value="0"]').prop('checked', true);
-                                        $('#<%=lblGender.ClientID%>').text("انثى");
-                                        $('#<%=hfGender.ClientID%>').val('0');
-                                    }
-                                    else {
-                                        $('#<%=lblGender.ClientID%>').text("ذكر");
-                                        $('#<%=hfGender.ClientID%>').val('1');
-                                    }
-                                } else {
-                                    $("#myModal").modal();
-
-                                }
-                            }
-
-                        });
-                    },
-                    error: function (xhr) {
-
-                        $("#myModal").modal();
-
-                        // alert('Request Status: ' + xhr.status + ' Status Text: ' + xhr.statusText + ' ' + xhr.responseText);
-                    },
-                    complete: function () {
-                    },
-                    failure: function (jqXHR, textStatus, errorThrown) {
-                    }
-                });
-            });
+          
         });
 
 
