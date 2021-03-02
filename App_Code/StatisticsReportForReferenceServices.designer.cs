@@ -383,20 +383,20 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		return ((ISingleResult<SortingAndOrgnizeSearchResult>)(result.ReturnValue));
 	}
 	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SortingAndOrgnizeAdd")]
+	public ISingleResult<SortingAndOrgnizeAddResult> SortingAndOrgnizeAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoReindex", DbType="Int")] System.Nullable<int> noReindex, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRelabel", DbType="Int")] System.Nullable<int> noRelabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBinding", DbType="Int")] System.Nullable<int> noBinding, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoExclude", DbType="Int")] System.Nullable<int> noExclude, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
+	{
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, receive_Date, noReindex, noRelabel, noBinding, noExclude, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(6)));
+		return ((ISingleResult<SortingAndOrgnizeAddResult>)(result1.ReturnValue));
+	}
+	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SortingAndOrgnizeEdit")]
-	public ISingleResult<SortingAndOrgnizeEditResult> SortingAndOrgnizeEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoReindex", DbType="Int")] System.Nullable<int> noReindex, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRelabel", DbType="Int")] System.Nullable<int> noRelabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBinding", DbType="Int")] System.Nullable<int> noBinding, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoExclude", DbType="NChar(10)")] string noExclude, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
+	public ISingleResult<SortingAndOrgnizeEditResult> SortingAndOrgnizeEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoReindex", DbType="Int")] System.Nullable<int> noReindex, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRelabel", DbType="Int")] System.Nullable<int> noRelabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBinding", DbType="Int")] System.Nullable<int> noBinding, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoExclude", DbType="Int")] System.Nullable<int> noExclude, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
 	{
 		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, receive_Date, noReindex, noRelabel, noBinding, noExclude, result);
 		result = ((System.Nullable<int>)(result1.GetParameterValue(7)));
 		return ((ISingleResult<SortingAndOrgnizeEditResult>)(result1.ReturnValue));
-	}
-	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BooksReceivedEdit")]
-	public ISingleResult<BooksReceivedEditResult> BooksReceivedEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoCopy", DbType="Int")] System.Nullable<int> noCopy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoTitle", DbType="Int")] System.Nullable<int> noTitle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
-	{
-		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, receive_Date, noCopy, noTitle, result);
-		result = ((System.Nullable<int>)(result1.GetParameterValue(5)));
-		return ((ISingleResult<BooksReceivedEditResult>)(result1.ReturnValue));
 	}
 	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BooksReceivedAdd")]
@@ -407,12 +407,12 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		return ((ISingleResult<BooksReceivedAddResult>)(result1.ReturnValue));
 	}
 	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SortingAndOrgnizeAdd")]
-	public ISingleResult<SortingAndOrgnizeAddResult> SortingAndOrgnizeAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoReindex", DbType="Int")] System.Nullable<int> noReindex, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoRelabel", DbType="Int")] System.Nullable<int> noRelabel, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBinding", DbType="Int")] System.Nullable<int> noBinding, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoExclude", DbType="Int")] System.Nullable<int> noExclude, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BooksReceivedEdit")]
+	public ISingleResult<BooksReceivedEditResult> BooksReceivedEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoCopy", DbType="Int")] System.Nullable<int> noCopy, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoTitle", DbType="Int")] System.Nullable<int> noTitle, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
 	{
-		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, receive_Date, noReindex, noRelabel, noBinding, noExclude, result);
-		result = ((System.Nullable<int>)(result1.GetParameterValue(6)));
-		return ((ISingleResult<SortingAndOrgnizeAddResult>)(result1.ReturnValue));
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, receive_Date, noCopy, noTitle, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(5)));
+		return ((ISingleResult<BooksReceivedEditResult>)(result1.ReturnValue));
 	}
 }
 
@@ -4174,6 +4174,158 @@ public partial class SortingAndOrgnizeSearchResult
 	}
 }
 
+public partial class SortingAndOrgnizeAddResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoReindex;
+	
+	private System.Nullable<int> _NoRelabel;
+	
+	private System.Nullable<int> _NoBinding;
+	
+	private System.Nullable<int> _NoExclude;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	public SortingAndOrgnizeAddResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoReindex", DbType="Int")]
+	public System.Nullable<int> NoReindex
+	{
+		get
+		{
+			return this._NoReindex;
+		}
+		set
+		{
+			if ((this._NoReindex != value))
+			{
+				this._NoReindex = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRelabel", DbType="Int")]
+	public System.Nullable<int> NoRelabel
+	{
+		get
+		{
+			return this._NoRelabel;
+		}
+		set
+		{
+			if ((this._NoRelabel != value))
+			{
+				this._NoRelabel = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBinding", DbType="Int")]
+	public System.Nullable<int> NoBinding
+	{
+		get
+		{
+			return this._NoBinding;
+		}
+		set
+		{
+			if ((this._NoBinding != value))
+			{
+				this._NoBinding = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoExclude", DbType="Int")]
+	public System.Nullable<int> NoExclude
+	{
+		get
+		{
+			return this._NoExclude;
+		}
+		set
+		{
+			if ((this._NoExclude != value))
+			{
+				this._NoExclude = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+}
+
 public partial class SortingAndOrgnizeEditResult
 {
 	
@@ -4189,7 +4341,7 @@ public partial class SortingAndOrgnizeEditResult
 	
 	private System.Nullable<int> _NoBinding;
 	
-	private string _NoExclude;
+	private System.Nullable<int> _NoExclude;
 	
 	private System.Nullable<System.DateTime> _Creation_Date;
 	
@@ -4293,8 +4445,8 @@ public partial class SortingAndOrgnizeEditResult
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoExclude", DbType="NChar(10)")]
-	public string NoExclude
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoExclude", DbType="Int")]
+	public System.Nullable<int> NoExclude
 	{
 		get
 		{
@@ -4305,122 +4457,6 @@ public partial class SortingAndOrgnizeEditResult
 			if ((this._NoExclude != value))
 			{
 				this._NoExclude = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
-	public System.Nullable<System.DateTime> Creation_Date
-	{
-		get
-		{
-			return this._Creation_Date;
-		}
-		set
-		{
-			if ((this._Creation_Date != value))
-			{
-				this._Creation_Date = value;
-			}
-		}
-	}
-}
-
-public partial class BooksReceivedEditResult
-{
-	
-	private int _ID;
-	
-	private string _User_ID;
-	
-	private System.Nullable<System.DateTime> _Receive_Date;
-	
-	private System.Nullable<int> _NoCopy;
-	
-	private System.Nullable<int> _NoTitle;
-	
-	private System.Nullable<System.DateTime> _Creation_Date;
-	
-	public BooksReceivedEditResult()
-	{
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-	public int ID
-	{
-		get
-		{
-			return this._ID;
-		}
-		set
-		{
-			if ((this._ID != value))
-			{
-				this._ID = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
-	public string User_ID
-	{
-		get
-		{
-			return this._User_ID;
-		}
-		set
-		{
-			if ((this._User_ID != value))
-			{
-				this._User_ID = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
-	public System.Nullable<System.DateTime> Receive_Date
-	{
-		get
-		{
-			return this._Receive_Date;
-		}
-		set
-		{
-			if ((this._Receive_Date != value))
-			{
-				this._Receive_Date = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoCopy", DbType="Int")]
-	public System.Nullable<int> NoCopy
-	{
-		get
-		{
-			return this._NoCopy;
-		}
-		set
-		{
-			if ((this._NoCopy != value))
-			{
-				this._NoCopy = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoTitle", DbType="Int")]
-	public System.Nullable<int> NoTitle
-	{
-		get
-		{
-			return this._NoTitle;
-		}
-		set
-		{
-			if ((this._NoTitle != value))
-			{
-				this._NoTitle = value;
 			}
 		}
 	}
@@ -4558,7 +4594,7 @@ public partial class BooksReceivedAddResult
 	}
 }
 
-public partial class SortingAndOrgnizeAddResult
+public partial class BooksReceivedEditResult
 {
 	
 	private int _ID;
@@ -4567,17 +4603,13 @@ public partial class SortingAndOrgnizeAddResult
 	
 	private System.Nullable<System.DateTime> _Receive_Date;
 	
-	private System.Nullable<int> _NoReindex;
+	private System.Nullable<int> _NoCopy;
 	
-	private System.Nullable<int> _NoRelabel;
-	
-	private System.Nullable<int> _NoBinding;
-	
-	private System.Nullable<int> _NoExclude;
+	private System.Nullable<int> _NoTitle;
 	
 	private System.Nullable<System.DateTime> _Creation_Date;
 	
-	public SortingAndOrgnizeAddResult()
+	public BooksReceivedEditResult()
 	{
 	}
 	
@@ -4629,66 +4661,34 @@ public partial class SortingAndOrgnizeAddResult
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoReindex", DbType="Int")]
-	public System.Nullable<int> NoReindex
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoCopy", DbType="Int")]
+	public System.Nullable<int> NoCopy
 	{
 		get
 		{
-			return this._NoReindex;
+			return this._NoCopy;
 		}
 		set
 		{
-			if ((this._NoReindex != value))
+			if ((this._NoCopy != value))
 			{
-				this._NoReindex = value;
+				this._NoCopy = value;
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoRelabel", DbType="Int")]
-	public System.Nullable<int> NoRelabel
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoTitle", DbType="Int")]
+	public System.Nullable<int> NoTitle
 	{
 		get
 		{
-			return this._NoRelabel;
+			return this._NoTitle;
 		}
 		set
 		{
-			if ((this._NoRelabel != value))
+			if ((this._NoTitle != value))
 			{
-				this._NoRelabel = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBinding", DbType="Int")]
-	public System.Nullable<int> NoBinding
-	{
-		get
-		{
-			return this._NoBinding;
-		}
-		set
-		{
-			if ((this._NoBinding != value))
-			{
-				this._NoBinding = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoExclude", DbType="Int")]
-	public System.Nullable<int> NoExclude
-	{
-		get
-		{
-			return this._NoExclude;
-		}
-		set
-		{
-			if ((this._NoExclude != value))
-			{
-				this._NoExclude = value;
+				this._NoTitle = value;
 			}
 		}
 	}
