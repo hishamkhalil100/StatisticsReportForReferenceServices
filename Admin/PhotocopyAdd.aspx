@@ -184,7 +184,7 @@
                                             <asp:HiddenField ID="hfGender" runat="server" />
                                             <label class="control-label">رقم العضوية / رقم الهوية</label>
                                             <div class="controls">
-                                                <input id="txtSearch" name="txtSearch" runat="server" type="text" class="span6">
+                                                <input id="txtSearch" name="txtSearch" runat="server" type="text" class="span6" />
                                                 <asp:RequiredFieldValidator ID="rfvtxtSearch" runat="server" ErrorMessage="يجب ادخل رقم العضوية / رقم الهوية" ControlToValidate="txtSearch" SetFocusOnError="true" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
@@ -197,14 +197,14 @@
                                         <div class="control-group">
                                             <label class="control-label">اسم المستفيد *</label>
                                             <div class="controls">
-                                                <input id="txtUserName" name="txtUserName" runat="server" type="text" class="span6" disabled="disabled">
+                                                <input id="txtUserName" name="txtUserName" runat="server" type="text" class="span6" disabled="True" />
                                                 <asp:RequiredFieldValidator ID="rfvtxtUserName" runat="server" ErrorMessage="يجب ادخال اسم المستفيد" ControlToValidate="txtUserName" SetFocusOnError="true" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
                                             </div>
                                         </div>
                                         <div class="control-group">
                                             <label class="control-label">رقم العضوية *</label>
                                             <div class="controls">
-                                                <input id="txtUserCode" name="txtUserCode" runat="server" type="text" class="span6" disabled="disabled">
+                                                <input id="txtUserCode" name="txtUserCode" runat="server" type="text" class="span6" disabled="True" />
                                             </div>
                                         </div>
 
@@ -212,7 +212,7 @@
                                         <div class="control-group">
                                             <label class="control-label">رقم الجوال</label>
                                             <div class="controls">
-                                                <input id="txtMobile" name="txtMobile" runat="server" type="text" class="span6" disabled="disabled">
+                                                <input id="txtMobile" name="txtMobile" runat="server" type="text" class="span6" disabled="True" />
                                             </div>
                                         </div>
                                         <div class="control-group">
