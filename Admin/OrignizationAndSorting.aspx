@@ -34,18 +34,7 @@
             $('.calendars').width = $('#ContentPlaceHolder1_popupDatepicker').width;
         });
 
-        //function showDateStart(date) {
-        //    //document.getElementById("lblStart").innerHTML = date;
-        //    document.getElementById('lblStart').innerText = date;
-        //}
-        //function showDateEnd(date) {
-        //    //document.getElementById("lblStart").innerHTML = date;
-        //    document.getElementById('lblEnd').innerText = date;
-        //}
-        //function btnSubmetClicked() {
-        //    alert(document.getElementById('ContentPlaceHolder1_popupDatepicker').value);
-        //    window.location.href(window.location.href + "&SDate=" + document.getElementById('lblstart').innerText + "&EDate=" + document.getElementById('lblEnd').innerText);
-        //}
+        
     </script>
     <style type="text/css">
         option:hover {

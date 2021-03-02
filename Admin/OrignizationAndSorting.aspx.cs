@@ -185,44 +185,34 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.PhotocopySearch(int.Parse(Request["num"].ToString()), null, null, null, null, null, null).Single<PhotocopySearchResult>();
-            txtUserName.Value = q.Vistor_Name.ToString();
-            txtMobile.Value = q.MobileNo.ToString();
-            txtUserCode.Value = q.Vistor_ID.ToString();
-            txtNoOfBooks.Value = q.NoBooks.ToString();
-            txtNoOfPages.Value = q.NoPages.ToString();
+            var q = srfs.SortingAndOrgnizeSearch(int.Parse(Request["num"].ToString()), null, null)
+                .Single<SortingAndOrgnizeSearchResult>();
+            txtBinding.Value = q.NoBinding.ToString();
+            txtExclude.Value = q.NoExclude.ToString();
+            txtReindex.Value = q.NoReindex.ToString();
+            txtRelabel.Value = q.NoRelabel.ToString();
+
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
 
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-      
+
 
         }
         else
         {
-            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null, null).Single<PhotocopySearchWithUsersResult>();
-          
-            int? numOfReindex = ToNullableInt(txtReindex.Value.ToString());
-            int? numOfRebinding = ToNullableInt(txtBinding.Value.ToString());
-            int? numOfLabel = ToNullableInt(txtRelabel.Value.ToString());
-            int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
+            var q = srfs
+                .SortingAndOrgnizeSearchWithUsers(int.Parse(Request["num"].ToString()),
+                    Request.Cookies["UserWebsiteId"].Value.ToString(), null)
+                .Single<SortingAndOrgnizeSearchWithUsersResult>();
 
-            if (q.Gender == 1)
-            {
-                lblGender.Text = "ذكر";
-
-            }
-            else
-            {
-                lblGender.Text = "انثى";
-            }
-            //rblGender.SelectedValue = q.Customer_Gender.ToString();
-
+            txtBinding.Value = q.NoBinding.ToString();
+            txtExclude.Value = q.NoExclude.ToString();
+            txtReindex.Value = q.NoReindex.ToString();
+            txtRelabel.Value = q.NoRelabel.ToString();
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
-            //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-            hfName.Value = q.Vistor_Name;
-            hfMobile.Value = q.MobileNo;
+
         }
     }
 
