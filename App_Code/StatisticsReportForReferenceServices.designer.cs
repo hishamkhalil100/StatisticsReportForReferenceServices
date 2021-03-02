@@ -303,6 +303,43 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, counter_ID, receive_Date, mobileNo);
 		return ((ISingleResult<GeneralCollectionSearchWithUsersResult>)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopySearch")]
+	public ISingleResult<PhotocopySearchResult> PhotocopySearch([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(50)")] string mobileNo)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, receive_Date, mobileNo);
+		return ((ISingleResult<PhotocopySearchResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopyAdd")]
+	public ISingleResult<PhotocopyAddResult> PhotocopyAdd([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoPages", DbType="Int")] System.Nullable<int> noPages, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(50)")] string mobileNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
+	{
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, vistor_ID, vistor_Name, noPages, receive_Date, noBooks, gender, mobileNo, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(8)));
+		return ((ISingleResult<PhotocopyAddResult>)(result1.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopyDelete")]
+	public int PhotocopyDelete([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD);
+		return ((int)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopyEdit")]
+	public ISingleResult<PhotocopyEditResult> PhotocopyEdit([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoPages", DbType="Int")] System.Nullable<int> noPages, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NoBooks", DbType="Int")] System.Nullable<int> noBooks, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(50)")] string mobileNo, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Result", DbType="Int")] ref System.Nullable<int> result)
+	{
+		IExecuteResult result1 = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, noPages, receive_Date, noBooks, gender, mobileNo, result);
+		result = ((System.Nullable<int>)(result1.GetParameterValue(9)));
+		return ((ISingleResult<PhotocopyEditResult>)(result1.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopySearchWithUsers")]
+	public ISingleResult<PhotocopySearchWithUsersResult> PhotocopySearchWithUsers([global::System.Data.Linq.Mapping.ParameterAttribute(Name="ID", DbType="Int")] System.Nullable<int> iD, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="Int")] System.Nullable<int> vistor_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_Name", DbType="NVarChar(255)")] string vistor_Name, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Gender", DbType="Int")] System.Nullable<int> gender, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="MobileNo", DbType="NVarChar(50)")] string mobileNo)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, vistor_ID, vistor_Name, gender, receive_Date, mobileNo);
+		return ((ISingleResult<PhotocopySearchWithUsersResult>)(result.ReturnValue));
+	}
 }
 
 public partial class GetAllDepartmentsResult
@@ -2754,6 +2791,758 @@ public partial class GeneralCollectionSearchWithUsersResult
 			if ((this._Creation_Date != value))
 			{
 				this._Creation_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(50)")]
+	public string MobileNo
+	{
+		get
+		{
+			return this._MobileNo;
+		}
+		set
+		{
+			if ((this._MobileNo != value))
+			{
+				this._MobileNo = value;
+			}
+		}
+	}
+}
+
+public partial class PhotocopySearchResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _NoPages;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	private System.Nullable<int> _Gender;
+	
+	private string _MobileNo;
+	
+	public PhotocopySearchResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoPages", DbType="Int")]
+	public System.Nullable<int> NoPages
+	{
+		get
+		{
+			return this._NoPages;
+		}
+		set
+		{
+			if ((this._NoPages != value))
+			{
+				this._NoPages = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(50)")]
+	public string MobileNo
+	{
+		get
+		{
+			return this._MobileNo;
+		}
+		set
+		{
+			if ((this._MobileNo != value))
+			{
+				this._MobileNo = value;
+			}
+		}
+	}
+}
+
+public partial class PhotocopyAddResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _NoPages;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<int> _Gender;
+	
+	private string _MobileNo;
+	
+	public PhotocopyAddResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoPages", DbType="Int")]
+	public System.Nullable<int> NoPages
+	{
+		get
+		{
+			return this._NoPages;
+		}
+		set
+		{
+			if ((this._NoPages != value))
+			{
+				this._NoPages = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(50)")]
+	public string MobileNo
+	{
+		get
+		{
+			return this._MobileNo;
+		}
+		set
+		{
+			if ((this._MobileNo != value))
+			{
+				this._MobileNo = value;
+			}
+		}
+	}
+}
+
+public partial class PhotocopyEditResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _NoPages;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	private System.Nullable<int> _Gender;
+	
+	private string _MobileNo;
+	
+	public PhotocopyEditResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoPages", DbType="Int")]
+	public System.Nullable<int> NoPages
+	{
+		get
+		{
+			return this._NoPages;
+		}
+		set
+		{
+			if ((this._NoPages != value))
+			{
+				this._NoPages = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NVarChar(50)")]
+	public string MobileNo
+	{
+		get
+		{
+			return this._MobileNo;
+		}
+		set
+		{
+			if ((this._MobileNo != value))
+			{
+				this._MobileNo = value;
+			}
+		}
+	}
+}
+
+public partial class PhotocopySearchWithUsersResult
+{
+	
+	private int _ID;
+	
+	private string _User_ID;
+	
+	private System.Nullable<int> _Vistor_ID;
+	
+	private string _Vistor_Name;
+	
+	private System.Nullable<int> _NoPages;
+	
+	private System.Nullable<System.DateTime> _Receive_Date;
+	
+	private System.Nullable<int> _NoBooks;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	private System.Nullable<int> _Gender;
+	
+	private string _MobileNo;
+	
+	public PhotocopySearchWithUsersResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
+	public int ID
+	{
+		get
+		{
+			return this._ID;
+		}
+		set
+		{
+			if ((this._ID != value))
+			{
+				this._ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50)")]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_ID", DbType="Int")]
+	public System.Nullable<int> Vistor_ID
+	{
+		get
+		{
+			return this._Vistor_ID;
+		}
+		set
+		{
+			if ((this._Vistor_ID != value))
+			{
+				this._Vistor_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Vistor_Name", DbType="NVarChar(255)")]
+	public string Vistor_Name
+	{
+		get
+		{
+			return this._Vistor_Name;
+		}
+		set
+		{
+			if ((this._Vistor_Name != value))
+			{
+				this._Vistor_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoPages", DbType="Int")]
+	public System.Nullable<int> NoPages
+	{
+		get
+		{
+			return this._NoPages;
+		}
+		set
+		{
+			if ((this._NoPages != value))
+			{
+				this._NoPages = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Receive_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Receive_Date
+	{
+		get
+		{
+			return this._Receive_Date;
+		}
+		set
+		{
+			if ((this._Receive_Date != value))
+			{
+				this._Receive_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoBooks", DbType="Int")]
+	public System.Nullable<int> NoBooks
+	{
+		get
+		{
+			return this._NoBooks;
+		}
+		set
+		{
+			if ((this._NoBooks != value))
+			{
+				this._NoBooks = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Int")]
+	public System.Nullable<int> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
 			}
 		}
 	}

@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
-public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
+public partial class Admin_PhotocopyAdd : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -46,7 +46,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             {
                 if (result == 1)
                 {
-                    Response.Redirect("GeneralCollectionAdd.aspx");
+                    Response.Redirect("PhotocopyAdd.aspx");
                     divNotifi.Visible = true;
                     divNotifi.Attributes.Add("class", "alert alert-block alert-success fade in");
                     lblDivNotifiTitle.Text = "تم !";
@@ -105,8 +105,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //popupDatepickerEnd.Value = string.Empty;
         hfVistorID.Value = string.Empty;
         lblGender.Text = "ذكر";
-        ddlCounter.SelectedValue = "0";
         txtNoOfBooks.Value = string.Empty;
+        txtNoOfPages.Value = string.Empty;
         
     }
     private int?[] insert()
@@ -126,13 +126,13 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //    endDate = null;
         //}
         int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
-        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
+        int? numOfPages = ToNullableInt(txtNoOfPages.Value.ToString());
 
 
-        var q = new StatisticsReportForReferenceServicesDataContext().GeneralCollectionAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
-            hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),counterNo,
-            startDate, numOfbooks, hfMobile.Value.ToString(),
-            ref result).Single<GeneralCollectionAddResult>();
+        var q = new StatisticsReportForReferenceServicesDataContext().PhotocopyAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
+            hfName.Value.ToString(),numOfPages, startDate,numOfbooks, int.Parse(hfGender.Value.ToString()),
+              hfMobile.Value.ToString(),
+            ref result).Single<PhotocopyAddResult>();
         int?[] arr = { result, q.ID};
         return arr;
     }
@@ -152,7 +152,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //}
 
         int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
-        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
+        int? numOfPages = ToNullableInt(txtNoOfPages.Value.ToString());
         if (hfGender.Value.Equals("1"))
         {
             gender = 1;
@@ -162,7 +162,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(), gender,counterNo,  startDate, numOfbooks, hfMobile.Value.ToString(), ref result);
+        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(),numOfPages, startDate, numOfbooks, gender,hfMobile.Value.ToString(), ref result);
         return result;
     }
     private string invertDate(string date)
@@ -188,12 +188,12 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.GeneralCollectionSearch(int.Parse(Request["num"].ToString()), null, null, null, null, null,null, null).Single<GeneralCollectionSearchResult>();
+            var q = srfs.PhotocopySearch(int.Parse(Request["num"].ToString()), null, null, null, null, null,null).Single<PhotocopySearchResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.MobileNo.ToString();
-            ddlCounter.SelectedValue = q.Counter_ID.ToString();
             txtUserCode.Value = q.Vistor_ID.ToString();
             txtNoOfBooks.Value = q.NoBooks.ToString();
+            txtNoOfPages.Value = q.NoPages.ToString();
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
             if (q.Gender == 1)
@@ -218,13 +218,12 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         }
         else
         {
-            var q = srfs.GeneralCollectionSearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null,null,null).Single<GeneralCollectionSearchWithUsersResult>();
+            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null,null).Single<PhotocopySearchWithUsersResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.MobileNo.ToString();
-            ddlCounter.SelectedValue = q.Counter_ID.ToString();
             txtUserCode.Value = q.Vistor_ID.ToString();
             txtNoOfBooks.Value = q.NoBooks.ToString();
-
+            txtNoOfPages.Value = q.NoPages.ToString();
             if (q.Gender == 1)
             {
                 lblGender.Text = "ذكر";
