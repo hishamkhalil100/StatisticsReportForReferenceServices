@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 {
@@ -46,7 +42,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
             {
                 if (result == 1)
                 {
-                    Response.Redirect("PhotocopyAdd.aspx");
+                    Response.Redirect("OrignizationAndSorting.aspx");
                     divNotifi.Visible = true;
                     divNotifi.Attributes.Add("class", "alert alert-block alert-success fade in");
                     lblDivNotifiTitle.Text = "تم !";
@@ -99,10 +95,10 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 
     private void reset()
     {
-       
+
         popupDatepicker.Value = string.Empty;
         //popupDatepickerEnd.Value = string.Empty;
-     
+
         txtBinding.Value = string.Empty;
         txtExclude.Value = string.Empty;
         txtReindex.Value = string.Empty;
@@ -113,7 +109,8 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
     {
         int? result = null;
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())),
+            "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -129,9 +126,10 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
 
 
-        var q = new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), startDate,
-              numOfReindex, numOfLabel, numOfRebinding,
-              numOfExclude,
+        var q = new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeAdd(
+            Request.Cookies["UserWebsiteId"].Value.ToString(), startDate,
+            numOfReindex, numOfLabel, numOfRebinding,
+            numOfExclude,
             ref result).Single<SortingAndOrgnizeAddResult>();
         int?[] arr = { result, q.ID };
         return arr;
@@ -141,7 +139,8 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         int? result = null;
         int gender = 1;
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())),
+            "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -156,7 +155,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         int? numOfLabel = ToNullableInt(txtRelabel.Value.ToString());
         int? numOfExclude = ToNullableInt(txtExclude.Value.ToString());
 
-       
+
         new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeEdit(
             int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(),
             startDate, numOfReindex, numOfLabel, numOfRebinding, numOfExclude, ref result);
@@ -187,6 +186,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         {
             var q = srfs.SortingAndOrgnizeSearch(int.Parse(Request["num"].ToString()), null, null)
                 .Single<SortingAndOrgnizeSearchResult>();
+            popupDatepicker.Value = new DateHG().GregToHijri(q.Receive_Date.ToString());
             txtBinding.Value = q.NoBinding.ToString();
             txtExclude.Value = q.NoExclude.ToString();
             txtReindex.Value = q.NoReindex.ToString();
@@ -195,7 +195,8 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
 
-            popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
+            // popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
+
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
 
 

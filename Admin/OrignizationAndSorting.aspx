@@ -120,7 +120,7 @@
         <!-- BEGIN PAGE CONTENT-->
         <div class="row-fluid">
             <div class="span12">
-                <div class="widget box blue" id="form_wizard_1">
+                <div class="widget box blue" id="">
                     <div class="widget-title">
                         <h4>
                             <i class="icon-reorder"></i>اضافة 
@@ -141,26 +141,11 @@
                         </div>
                         <div class="form-horizontal">
                             <div class="form-wizard">
-                                <div class="navbar steps">
-                                    <div class="navbar-inner">
-                                        <ul class="row-fluid">
-                                           
-                                            <li class="span4">
-                                                <a href="#tab2" data-toggle="tab" class="step">
-                                                    <span class="number">1</span>
-                                                    <span class="desc"><i class="icon-ok"></i>الخطوة الأخيرة</span>
-                                                </a>
-                                            </li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div id="bar" class="progress progress-striped">
-                                    <div class="bar"></div>
-                                </div>
-                                <div class="tab-content">
+                               
+                                
+                                <div class="content">
                                     
-                                    <div class="tab-pane" id="tab1">
+                                    <div class="pane" >
                                         <h4>خطوة 2 <strong>تفاصيل الخدمة</strong></h4>
                                         <div class="control-group">
                                             <label class="control-label">تاريخ الإستلام *</label>
@@ -189,7 +174,7 @@
                                             <label class="control-label">إعادة تكعيب *</label>
                                             <div class="controls">
                                                 <input type="text" class="span6" id="txtRelabel" runat="server" name="txtNoOfBooks" />
-                                                <asp:RequiredFieldValidator ID="rfvtxtNoOfPages" runat="server" ErrorMessage="يجب ادخال عدد الكتب المعاد تكعيبها " ControlToValidate="txtNoOfPages" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
+                                                <asp:RequiredFieldValidator ID="rfvtxtNoOfPages" runat="server" ErrorMessage="يجب ادخال عدد الكتب المعاد تكعيبها " ControlToValidate="txtRelabel" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>
 
                                             </div>
                                         </div>
@@ -215,11 +200,7 @@
                                 </div>
                                 <div class="form-actions clearfix">
                                     <asp:LinkButton ID="btnSave" runat="server" OnClick="btnSave_Click" CssClass="btn btn-success button-submit" ValidationGroup="AddGroup">حفظ<i class="fa fa-check"></i></asp:LinkButton>
-                                    <a href="javascript:;" class="btn btn-primary blue button-next">التالي <i class="fa fa-angle-right"></i>
-                                    </a>
-                                    <a href="javascript:;" class="btn button-previous">
-                                        <i class="fa fa-angle-left"></i>السابق
-                                    </a>
+                                   
 
                                 </div>
                             </div>
