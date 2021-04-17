@@ -7,16 +7,14 @@ using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
-public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
+public partial class Admin_BooksFromIndexAdd : System.Web.UI.Page
 {
-     string userID;
-
+    private string userID;
     protected void Page_Load(object sender, EventArgs e)
     {
-       
         if (!IsPostBack)
         {
-            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liGeneralCollectionAdd");
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liBooksFromIndexAdd");
             ControlID.Attributes["class"] = "has-sub active";
             var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
             if (protectedText != null)
@@ -25,8 +23,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                     protectedText: protectedText);
                 Helper.GroupsEnum[] allowedGroups =
                 {
-                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.GeneralCollectionAdmin,
-                    Helper.GroupsEnum.GeneralCollection
+                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.BooksReceivedAdmin,
+                    Helper.GroupsEnum.BooksReceived
                 };
                 if (!Helper.IsAuthorize(
                     userGroups: new CookieSecurityProvider().Unprotect(
@@ -39,9 +37,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             {
                 Response.Redirect(url: "/Default.aspx");
             }
-        
 
-            if (!string.IsNullOrEmpty(Request["num"]))
+            if (!string.IsNullOrEmpty(value: Request[key: "num"]))
             {
                 try
                 {
@@ -49,8 +46,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                 }
                 catch (Exception ex)
                 {
-                    Helper.LogError(ex.Message, ex.StackTrace);
-                    Response.Redirect("/Admin/Error.aspx");
+                    Helper.LogError(Message: ex.Message, StackTrace: ex.StackTrace);
+                    Response.Redirect(url: "/Admin/Error.aspx");
                 }
             }
         }
@@ -75,7 +72,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             {
                 if (result == 1)
                 {
-                    Response.Redirect("GeneralCollectionAdd.aspx");
+                    Response.Redirect("BooksFromIndexAdd.aspx");
                     divNotifi.Visible = true;
                     divNotifi.Attributes.Add("class", "alert alert-block alert-success fade in");
                     lblDivNotifiTitle.Text = "تم !";
@@ -88,7 +85,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                     lblDivNotifiTitle.Text = "خطأ !";
                     pDivNotifiDesc.InnerText = "عذرا اتصل بمسؤول النظام";
                 }
-                Reset();
+                reset();
             }
         }
         else
@@ -96,7 +93,7 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             int?[] result = { 0, 0 };
             try
             {
-                result = Insert();
+                result = insert();
             }
             catch (Exception ex)
             {
@@ -119,32 +116,29 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                     lblDivNotifiTitle.Text = "خطأ !";
                     pDivNotifiDesc.InnerText = "عذرا اتصل بمسؤول النظام";
                 }
-                Reset();
+                reset();
             }
         }
     }
 
 
 
-    private void Reset()
+    private void reset()
     {
-        txtUserName.Value = string.Empty;
-        txtMobile.Value = string.Empty;
+
         popupDatepicker.Value = string.Empty;
         //popupDatepickerEnd.Value = string.Empty;
-        hfVistorID.Value = string.Empty;
-        lblGender.Text = "ذكر";
-        ddlCounter.SelectedValue = "0";
-        txtNoOfBooks.Value = string.Empty;
-        
+
+        txtTitles.Value = string.Empty;
+        txtCopies.Value = string.Empty;
+      
     }
-    private int?[] Insert()
+    private int?[] insert()
     {
         int? result = null;
-        int? itemID = null;
-
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())),
+            "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -154,15 +148,15 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //{
         //    endDate = null;
         //}
-        int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
-        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
+        int? numOfCopies = ToNullableInt(txtCopies.Value.ToString());
+        int? numOfTitles = ToNullableInt(txtTitles.Value.ToString());
+     
 
 
-        var q = new StatisticsReportForReferenceServicesDataContext().GeneralCollectionAdd(userID, int.Parse(hfVistorID.Value.ToString()),
-            hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),counterNo,
-            startDate, numOfbooks, hfMobile.Value.ToString(),
-            ref result).Single<GeneralCollectionAddResult>();
-        int?[] arr = { result, q.ID};
+        var q = new StatisticsReportForReferenceServicesDataContext().BooksReceivedAdd(
+            userID, startDate,
+            numOfCopies, numOfTitles, ref result).Single<BooksReceivedAddResult>();
+        int?[] arr = { result, q.ID };
         return arr;
     }
     private int? edit()
@@ -170,7 +164,8 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         int? result = null;
         int gender = 1;
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())),
+            "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -180,18 +175,13 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         //    endDate = null;
         //}
 
-        int? numOfbooks = ToNullableInt(txtNoOfBooks.Value.ToString());
-        int? counterNo = ToNullableInt(ddlCounter.SelectedValue.ToString());
-        if (hfGender.Value.Equals("1"))
-        {
-            gender = 1;
+        int? numOfCopies = ToNullableInt(txtCopies.Value.ToString());
+        int? numOfTitles = ToNullableInt(txtTitles.Value.ToString());
 
-        }
-        else
-        {
-            gender = 0;
-        }
-        new StatisticsReportForReferenceServicesDataContext().GeneralCollectionEdit(int.Parse(Request["num"].ToString()), userID, int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(), gender,counterNo,  startDate, numOfbooks, hfMobile.Value.ToString(), ref result);
+
+        new StatisticsReportForReferenceServicesDataContext().BooksReceivedEdit(
+            int.Parse(Request["num"].ToString()),userID,
+            startDate, numOfCopies, numOfCopies, ref result);
         return result;
     }
     private string invertDate(string date)
@@ -217,58 +207,34 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
-            var q = srfs.GeneralCollectionSearch(int.Parse(Request["num"].ToString()), null, null, null, null, null,null, null).Single<GeneralCollectionSearchResult>();
-            txtUserName.Value = q.Vistor_Name.ToString();
-            txtMobile.Value = q.MobileNo.ToString();
-            ddlCounter.SelectedValue = q.Counter_ID.ToString();
-            txtUserCode.Value = q.Vistor_ID.ToString();
-            txtNoOfBooks.Value = q.NoBooks.ToString();
+            var q = srfs.BooksReceivedSerach(int.Parse(Request["num"].ToString()), null, null)
+                .Single<BooksReceivedSerachResult>();
+            popupDatepicker.Value = new DateHG().GregToHijri(q.Receive_Date.ToString());
+            txtTitles.Value = q.NoTitle.ToString();
+            txtCopies.Value = q.NoCopy.ToString();
+           
+
             //rblGender.SelectedValue = q.Customer_Gender.ToString();
 
-            if (q.Gender == 1)
-            {
-                lblGender.Text = "ذكر";
-                hfGender.Value = "1";
 
-            }
-            else
-            {
-                lblGender.Text = "انثى";
-                hfGender.Value = "0";
-            }
-            txtSearch.Value = q.Vistor_ID.ToString();
-           
-            popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
+            // popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
+
             //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-            hfVistorID.Value = q.Vistor_ID.ToString();
-            hfName.Value = q.Vistor_Name;
-            hfMobile.Value = q.MobileNo;
+
 
         }
         else
         {
-            var q = srfs.GeneralCollectionSearchWithUsers(int.Parse(Request["num"].ToString()), userID, null, null, null, null,null,null).Single<GeneralCollectionSearchWithUsersResult>();
-            txtUserName.Value = q.Vistor_Name.ToString();
-            txtMobile.Value = q.MobileNo.ToString();
-            ddlCounter.SelectedValue = q.Counter_ID.ToString();
-            txtUserCode.Value = q.Vistor_ID.ToString();
-            txtNoOfBooks.Value = q.NoBooks.ToString();
+            var q = srfs
+                .BooksReceivedSerachWithusers(int.Parse(Request["num"].ToString()),
+                    userID, null)
+                .Single<BooksReceivedSerachWithusersResult>();
 
-            if (q.Gender == 1)
-            {
-                lblGender.Text = "ذكر";
-
-            }
-            else
-            {
-                lblGender.Text = "انثى";
-            }
-            //rblGender.SelectedValue = q.Customer_Gender.ToString();
+            txtTitles.Value = q.NoTitle.ToString();
+            txtCopies.Value = q.NoCopy.ToString();
            
             popupDatepicker.Value = cal.GregToHijri(q.Receive_Date.ToString());
-            //popupDatepickerEnd.Value = cal.GregToHijri(q.Finsh_date.ToString());
-            hfName.Value = q.Vistor_Name;
-            hfMobile.Value = q.MobileNo;
+
         }
     }
 

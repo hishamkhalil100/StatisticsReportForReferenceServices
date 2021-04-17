@@ -4,14 +4,41 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Admin_ItemsAdd : System.Web.UI.Page
 {
+    private string userID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
+       
         if (!IsPostBack)
         {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liItemsAdd");
+            ControlID.Attributes["class"] = "has-sub active";
+            var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
+            if (protectedText != null)
+            {
+                userID = new CookieSecurityProvider().Unprotect(
+                    protectedText: protectedText);
+                Helper.GroupsEnum[] allowedGroups =
+                {
+                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.ItemsAdmin,
+                    Helper.GroupsEnum.Items
+                };
+                if (!Helper.IsAuthorize(
+                    userGroups: new CookieSecurityProvider().Unprotect(
+                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                {
+                    Response.Redirect(url: "/Default.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect(url: "/Default.aspx");
+            }
             if (!string.IsNullOrEmpty(Request["num"]))
             {
                 try
@@ -35,7 +62,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
             int? result = null;
             try
             {
-                result = edit();
+                result = Edit();
             }
             catch (Exception ex)
             {
@@ -59,7 +86,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
                     lblDivNotifiTitle.Text = "خطأ !";
                     pDivNotifiDesc.InnerText = "عذرا اتصل بمسؤول النظام";
                 }
-                reset();
+                Reset();
             }
         }
         else
@@ -67,7 +94,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
             int?[] result = { 0, 0 };
             try
             {
-                result = insert();
+                result = Insert();
             }
             catch (Exception ex)
             {
@@ -90,14 +117,14 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
                     lblDivNotifiTitle.Text = "خطأ !";
                     pDivNotifiDesc.InnerText = "عذرا اتصل بمسؤول النظام";
                 }
-                reset();
+                Reset();
             }
         }
     }
 
 
 
-    private void reset()
+    private void Reset()
     {
         txtUserName.Value = string.Empty;
         txtMobile.Value = string.Empty;
@@ -119,13 +146,13 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
         ckItemType.Items[4].Selected = false;
         ckItemType.Items[5].Selected = false;
     }
-    private int?[] insert()
+    private int?[] Insert()
     {
         int? result = null;
         int? itemID = null;
 
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(InvertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -140,7 +167,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
 
 
 
-        new StatisticsReportForReferenceServicesDataContext().ItemsAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
+        new StatisticsReportForReferenceServicesDataContext().ItemsAdd(userID, int.Parse(hfVistorID.Value.ToString()),
             hfName.Value.ToString(), int.Parse(hfGender.Value.ToString()),
             startDate, null,
             int.Parse(rblPreiod.SelectedValue.ToString()),
@@ -161,12 +188,12 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
         int?[] arr = { result, itemID };
         return arr;
     }
-    private int? edit()
+    private int? Edit()
     {
         int? result = null;
         int gender = 1;
         DateHG cal = new DateHG();
-        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(invertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
+        DateTime startDate = DateTime.ParseExact(cal.HijriToGreg(InvertDate(popupDatepicker.Value.ToString())), "yyyy/MM/dd", cal.enCul.DateTimeFormat, DateTimeStyles.AllowWhiteSpaces);
         //DateTime? endDate;
         //if (!string.IsNullOrEmpty(popupDatepickerEnd.Value))
         //{
@@ -197,7 +224,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
             numberOfPages, ref result);
         return result;
     }
-    private string invertDate(string date)
+    private string InvertDate(string date)
     {
         string[] arr = date.Split('/');
         string invDate = string.Empty;
@@ -216,7 +243,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
     {
 
         StatisticsReportForReferenceServicesDataContext srfs = new StatisticsReportForReferenceServicesDataContext();
-        var qu = srfs.UsersSearch(Request.Cookies["UserWebsiteId"].Value.ToString()).Single<UsersSearchResult>();
+        var qu = srfs.UsersSearch(userID).Single<UsersSearchResult>();
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
@@ -255,7 +282,7 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
         }
         else
         {
-            var q = srfs.ItemsSearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).Single<ItemsSearchWithUsersResult>();
+            var q = srfs.ItemsSearchWithUsers(int.Parse(Request["num"].ToString()), userID, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).Single<ItemsSearchWithUsersResult>();
             txtUserName.Value = q.Customer_Name.ToString();
             txtMobile.Value = q.Mobile.ToString();
             rblDegree.SelectedValue = q.Degree.ToString();

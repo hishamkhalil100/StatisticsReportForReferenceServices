@@ -97,31 +97,87 @@ Website: http://thevectorlab.net/
             <div class="sidebar-toggler hidden-phone"></div>
             <!-- BEGIN SIDEBAR MENU -->
             <ul class="sidebar-menu">
-                <li id="liItemsAdd" runat="server" class="has-sub active">
-                    <a href="ItemsAdd.aspx" class="">
-                        <span class="icon-box"><i class="fa fa-tachometer"></i></span>اضافة عنصر
-                        <span class="arrow"></span>
-                    </a>
-                </li>
-                <li id="liItemsSearch" runat="server" class="has-sub">
-                    <a href="ItemsSearch.aspx" class="">
-                        <span class="arrow"></span>
-                        <span class="icon-box"><i class="fa fa-book"></i></span>بحث في العناصر
-					   
-                    </a>
-                </li>
-                <li id="liStatistics" runat="server" class="has-sub">
-                    <a href="Statistics.aspx" class="">
-                        <span class="icon-box"><i class="fa fa-cogs"></i></span>التقارير
-					<span class="arrow"></span>
-                    </a>
-                </li>
                 <li id="liUsersManagement" runat="server" class="has-sub">
                     <a href="UsersManagement.aspx" class="">
                         <span class="icon-box"><i class="fa fa-tasks"></i></span>ادارة الموظفين
                         <span class="arrow"></span>
                     </a>
                 </li>
+                <li id="liItemsAdd" runat="server" class="has-sub">
+                    <a href="ItemsAdd.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tachometer"></i></span>
+                        <span style="display: inline-flex;">الخدمة المرجعية <br/>اضافة عنصر </span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liItemsSearch" runat="server" class="has-sub">
+                    <a href="ItemsSearch.aspx" class="">
+                        <span class="arrow"></span>
+                        <span class="icon-box"><i class="fa fa-book"></i></span> 
+                        <span style="display: inline-flex;">الخدمة المرجعية <br/>بحث في العناصر </span>
+                    </a>
+                </li>
+                <li id="liStatistics" runat="server" class="has-sub">
+                    <a href="Statistics.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-cogs"></i></span>التقارير الخدمة المرجعية
+					<span class="arrow"></span>
+                    </a>
+                </li>
+               
+                <li id="liGeneralCollectionAdd" runat="server" class="has-sub">
+                    <a href="GeneralCollectionAdd.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>
+                        <span style="display: inline-flex;">خدمة المستفيدين <br/>المجموعات العامة/إضافة</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liGeneralCollectionStat" runat="server" class="has-sub">
+                    <a href="GeneralCollectionStat.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>
+                        <span style="display: inline-flex;">خدمة المستفيدين <br/>المجموعات العامة/التقارير</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liOrignizationAndSorting" runat="server" class="has-sub">
+                    <a href="OrignizationAndSortingAdd.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>وحدة التنظيم والإدارة/إضافة
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liOrignizationAndSortingStat" runat="server" class="has-sub">
+                    <a href="OrignizationAndSortingStat.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>
+                        <span style="display: inline-flex;">وحدة التنظيم والإدارة  <br/> /التقارير</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liPhotocopyAdd" runat="server" class="has-sub">
+                    <a href="PhotocopyAdd.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>التصوير/إضافة
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liPhotocopyStat" runat="server" class="has-sub">
+                    <a href="PhotocopyStat.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>التصوير/التقارير
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liBooksFromIndexAdd" runat="server" class="has-sub">
+                    <a href="BooksFromIndexAdd.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>
+                        <span style="display: inline-flex;">الكتب المستلمة  <br/> من الفهرسة/إضافة</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+                <li id="liBooksFromIndexStat" runat="server" class="has-sub">
+                    <a href="BooksFromIndexStat.aspx" class="">
+                        <span class="icon-box"><i class="fa fa-tasks"></i></span>
+                        <span style="display: inline-flex;">الكتب المستلمة  <br/> من الفهرسة/التقارير</span>
+                        <span class="arrow"></span>
+                    </a>
+                </li>
+
 
             </ul>
             <!-- END SIDEBAR MENU -->
@@ -182,8 +238,8 @@ Website: http://thevectorlab.net/
     <script src="assets\flot\jquery.flot.crosshair.js"></script>--%>
 
     <script src="js\jquery.peity.min.js"></script>
-   <script type="text/javascript" src="assets\uniform\jquery.uniform.min.js"></script>
-   <script src="js\scripts.js"></script>
+    <script type="text/javascript" src="assets\uniform\jquery.uniform.min.js"></script>
+    <script src="js\scripts.js"></script>
     <script>
         jQuery(document).ready(function () {
             // initiate layout and plugins

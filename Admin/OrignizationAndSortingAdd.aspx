@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="OrignizationAndSorting.aspx.cs" Inherits="Admin_OrignizationAndSorting" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin/Admin.master" AutoEventWireup="true" CodeFile="OrignizationAndSortingAdd.aspx.cs" Inherits="admin_orignizationandsortingAdd" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <!-- OR for ThemeRoller styling

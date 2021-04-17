@@ -27,37 +27,55 @@ public partial class _Default : System.Web.UI.Page
             string Msg = string.Empty;
             string UserRoleId = string.Empty;
             string UserId = txtUserName.Text;
+            string qUserId = null;
+            string qGroups= null;
+            int count = 0;
             bool isValid = ActiveDirectoryManagment.validateUser(txtUserName.Text, txtPassword.Text);
-            var q = new StatisticsReportForReferenceServicesDataContext().IsValidUser(txtUserName.Text).Single();
-
-            if (q != null && isValid && !q.User_Is_Locked)
+            HttpCookie userWebsiteId = new HttpCookie("UserWebsiteId");
+            HttpCookie securityType = new HttpCookie("SecurityType");
+             var q = new StatisticsReportForReferenceServicesDataContext().IsValidUser(txtUserName.Text).ToList();
+            if (q != null && isValid)
             {
-                HttpCookie UserWebsiteId = new HttpCookie("UserWebsiteId");
-                UserWebsiteId.Value = UserId;
-                Response.Cookies.Add(UserWebsiteId);
+                foreach (var item in q)
+                {
+                    if (!item.User_Is_Locked)
+                    {
+                       
+                        qUserId= item.User_ID.ToString();
 
-                HttpCookie SecurityType = new HttpCookie("SecurityType");// if it is leader or Manager
-                SecurityType.Value = q.User_Role;
-                Response.Cookies.Add(SecurityType);
+                        // if it is leader or Manager
+                        qGroups+= item.GroupID.ToString()+"|";
+
+                    }
+                    else
+                    {
+                        DivMsg.Visible = true;
+                        break;
+                    }
+                }
                 if (chkRemberMe.Checked)
                 {
-                    UserWebsiteId.Expires = DateTime.Now.AddDays(30);
-                    SecurityType.Expires = DateTime.Now.AddDays(30);
+                    userWebsiteId.Expires = DateTime.Now.AddDays(30);
+                    securityType.Expires = DateTime.Now.AddDays(30);
                 }
                 else
                 {
-                    UserWebsiteId.Expires = DateTime.Now.AddDays(1);
-                    SecurityType.Expires = DateTime.Now.AddDays(1);
+                    userWebsiteId.Expires = DateTime.Now.AddDays(1);
+                    securityType.Expires = DateTime.Now.AddDays(1);
                 }
 
-
+                userWebsiteId.Value = new CookieSecurityProvider().Protect(qUserId);
+                securityType.Value = new CookieSecurityProvider().Protect(qGroups);
+                userWebsiteId.Secure = true;
+                
+                Response.Cookies.Add(userWebsiteId);
+                Response.Cookies.Add(securityType);
                 if (Request.QueryString["page"] == null)
                     Response.Redirect("/admin/ItemsAdd.aspx");
                 else
                     Response.Redirect(Request.QueryString["page"].ToString());
-
-
             }
+
             else
             {
                 DivMsg.Visible = true;
@@ -66,6 +84,7 @@ public partial class _Default : System.Web.UI.Page
         catch (Exception ex)
         {
             DivMsg.Visible = true;
+            DivMsg.InnerHtml = ex.Message;
         }
     }
 }

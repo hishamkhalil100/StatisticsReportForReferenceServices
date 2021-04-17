@@ -4,14 +4,40 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Admin_PhotocopyAdd : System.Web.UI.Page
 {
+    private string userID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liPhotocopyAdd");
+            ControlID.Attributes["class"] = "has-sub active";
+            var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
+            if (protectedText != null)
+            {
+                userID = new CookieSecurityProvider().Unprotect(
+                    protectedText: protectedText);
+                Helper.GroupsEnum[] allowedGroups =
+                {
+                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.PhotocopyAdmin,
+                    Helper.GroupsEnum.Photocopy
+                };
+                if (!Helper.IsAuthorize(
+                    userGroups: new CookieSecurityProvider().Unprotect(
+                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                {
+                    Response.Redirect(url: "/Default.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect(url: "/Default.aspx");
+            }
             if (!string.IsNullOrEmpty(Request["num"]))
             {
                 try
@@ -129,7 +155,7 @@ public partial class Admin_PhotocopyAdd : System.Web.UI.Page
         int? numOfPages = ToNullableInt(txtNoOfPages.Value.ToString());
 
 
-        var q = new StatisticsReportForReferenceServicesDataContext().PhotocopyAdd(Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()),
+        var q = new StatisticsReportForReferenceServicesDataContext().PhotocopyAdd(userID, int.Parse(hfVistorID.Value.ToString()),
             hfName.Value.ToString(),numOfPages, startDate,numOfbooks, int.Parse(hfGender.Value.ToString()),
               hfMobile.Value.ToString(),
             ref result).Single<PhotocopyAddResult>();
@@ -162,7 +188,7 @@ public partial class Admin_PhotocopyAdd : System.Web.UI.Page
         {
             gender = 0;
         }
-        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(),numOfPages, startDate, numOfbooks, gender,hfMobile.Value.ToString(), ref result);
+        new StatisticsReportForReferenceServicesDataContext().PhotocopyEdit(int.Parse(Request["num"].ToString()), userID, int.Parse(hfVistorID.Value.ToString()) ,hfName.Value.ToString(),numOfPages, startDate, numOfbooks, gender,hfMobile.Value.ToString(), ref result);
         return result;
     }
     private string invertDate(string date)
@@ -184,7 +210,7 @@ public partial class Admin_PhotocopyAdd : System.Web.UI.Page
     {
 
         StatisticsReportForReferenceServicesDataContext srfs = new StatisticsReportForReferenceServicesDataContext();
-        var qu = srfs.UsersSearch(Request.Cookies["UserWebsiteId"].Value.ToString()).Single<UsersSearchResult>();
+        var qu = srfs.UsersSearch(userID).Single<UsersSearchResult>();
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
@@ -218,7 +244,7 @@ public partial class Admin_PhotocopyAdd : System.Web.UI.Page
         }
         else
         {
-            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(), null, null, null, null,null).Single<PhotocopySearchWithUsersResult>();
+            var q = srfs.PhotocopySearchWithUsers(int.Parse(Request["num"].ToString()), userID, null, null, null, null,null).Single<PhotocopySearchWithUsersResult>();
             txtUserName.Value = q.Vistor_Name.ToString();
             txtMobile.Value = q.MobileNo.ToString();
             txtUserCode.Value = q.Vistor_ID.ToString();

@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class Admin_Statistics : System.Web.UI.Page
@@ -13,6 +14,14 @@ public partial class Admin_Statistics : System.Web.UI.Page
     {
         if (!IsPostBack)
         {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liStatistics");
+            ControlID.Attributes["class"] = "has-sub active";
+            Helper.GroupsEnum[] allowedGroups =
+                {Helper.GroupsEnum.Admin, Helper.GroupsEnum.ItemsAdmin};
+            if (Request.Cookies["SecurityType"] != null && !Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+            {
+                Response.Redirect("/Default.aspx");
+            }
             try
             {
                 GetRealDept();

@@ -96,20 +96,6 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		return ((ISingleResult<GetRoleByUserIDResult>)(result.ReturnValue));
 	}
 	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getVistorByID")]
-	public ISingleResult<getVistorByIDResult> getVistorByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="VarChar(255)")] string vistor_ID)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), vistor_ID);
-		return ((ISingleResult<getVistorByIDResult>)(result.ReturnValue));
-	}
-	
-	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.IsValidUser")]
-	public ISingleResult<IsValidUserResult> IsValidUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID)
-	{
-		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID);
-		return ((ISingleResult<IsValidUserResult>)(result.ReturnValue));
-	}
-	
 	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.ItemsSearch")]
 	public ISingleResult<ItemsSearchResult> ItemsSearch(
 				[global::System.Data.Linq.Mapping.ParameterAttribute(Name="Number", DbType="Int")] System.Nullable<int> number, 
@@ -413,6 +399,55 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 	{
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), iD, user_ID, receive_Date);
 		return ((ISingleResult<SortingAndOrgnizeSearchResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.getVistorByID")]
+	public ISingleResult<getVistorByIDResult> getVistorByID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Vistor_ID", DbType="VarChar(255)")] string vistor_ID)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), vistor_ID);
+		return ((ISingleResult<getVistorByIDResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetGroupsByUserID")]
+	public ISingleResult<GetGroupsByUserIDResult> GetGroupsByUserID([global::System.Data.Linq.Mapping.ParameterAttribute(Name="USER_ID", DbType="NVarChar(50)")] string uSER_ID)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), uSER_ID);
+		return ((ISingleResult<GetGroupsByUserIDResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.IsValidUser")]
+	public ISingleResult<IsValidUserResult> IsValidUser([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID);
+		return ((ISingleResult<IsValidUserResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GeneralCollectionStat")]
+	public ISingleResult<GeneralCollectionStatResult> GeneralCollectionStat([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Finsh_date", DbType="DateTime")] System.Nullable<System.DateTime> finsh_date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Counter_ID", DbType="Int")] System.Nullable<int> counter_ID)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), receive_Date, finsh_date, counter_ID);
+		return ((ISingleResult<GeneralCollectionStatResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.PhotocopyStat")]
+	public ISingleResult<PhotocopyStatResult> PhotocopyStat([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Finsh_date", DbType="DateTime")] System.Nullable<System.DateTime> finsh_date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), receive_Date, finsh_date);
+		return ((ISingleResult<PhotocopyStatResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.SortingAndOrgnizeStat")]
+	public ISingleResult<SortingAndOrgnizeStatResult> SortingAndOrgnizeStat([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Finsh_date", DbType="DateTime")] System.Nullable<System.DateTime> finsh_date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), receive_Date, finsh_date);
+		return ((ISingleResult<SortingAndOrgnizeStatResult>)(result.ReturnValue));
+	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.BooksReceivedStat")]
+	public ISingleResult<BooksReceivedStatResult> BooksReceivedStat([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Receive_Date", DbType="DateTime")] System.Nullable<System.DateTime> receive_Date, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Finsh_date", DbType="DateTime")] System.Nullable<System.DateTime> finsh_date)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), receive_Date, finsh_date);
+		return ((ISingleResult<BooksReceivedStatResult>)(result.ReturnValue));
 	}
 }
 
@@ -829,202 +864,6 @@ public partial class GetRoleByUserIDResult
 			if ((this._User_Is_Locked != value))
 			{
 				this._User_Is_Locked = value;
-			}
-		}
-	}
-}
-
-public partial class getVistorByIDResult
-{
-	
-	private int _ID;
-	
-	private string _Name;
-	
-	private bool _Gender;
-	
-	private string _Mobile;
-	
-	private string _NationalID;
-	
-	public getVistorByIDResult()
-	{
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ID", DbType="Int NOT NULL")]
-	public int ID
-	{
-		get
-		{
-			return this._ID;
-		}
-		set
-		{
-			if ((this._ID != value))
-			{
-				this._ID = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-	public string Name
-	{
-		get
-		{
-			return this._Name;
-		}
-		set
-		{
-			if ((this._Name != value))
-			{
-				this._Name = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit NOT NULL")]
-	public bool Gender
-	{
-		get
-		{
-			return this._Gender;
-		}
-		set
-		{
-			if ((this._Gender != value))
-			{
-				this._Gender = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mobile", DbType="NVarChar(50)")]
-	public string Mobile
-	{
-		get
-		{
-			return this._Mobile;
-		}
-		set
-		{
-			if ((this._Mobile != value))
-			{
-				this._Mobile = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NationalID", DbType="NVarChar(50)")]
-	public string NationalID
-	{
-		get
-		{
-			return this._NationalID;
-		}
-		set
-		{
-			if ((this._NationalID != value))
-			{
-				this._NationalID = value;
-			}
-		}
-	}
-}
-
-public partial class IsValidUserResult
-{
-	
-	private string _User_ID;
-	
-	private string _User_Name;
-	
-	private string _User_Role;
-	
-	private bool _User_Is_Locked;
-	
-	private System.Nullable<System.DateTime> _Creation_Date;
-	
-	public IsValidUserResult()
-	{
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-	public string User_ID
-	{
-		get
-		{
-			return this._User_ID;
-		}
-		set
-		{
-			if ((this._User_ID != value))
-			{
-				this._User_ID = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(255)")]
-	public string User_Name
-	{
-		get
-		{
-			return this._User_Name;
-		}
-		set
-		{
-			if ((this._User_Name != value))
-			{
-				this._User_Name = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Role", DbType="NVarChar(50)")]
-	public string User_Role
-	{
-		get
-		{
-			return this._User_Role;
-		}
-		set
-		{
-			if ((this._User_Role != value))
-			{
-				this._User_Role = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Is_Locked", DbType="Bit NOT NULL")]
-	public bool User_Is_Locked
-	{
-		get
-		{
-			return this._User_Is_Locked;
-		}
-		set
-		{
-			if ((this._User_Is_Locked != value))
-			{
-				this._User_Is_Locked = value;
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
-	public System.Nullable<System.DateTime> Creation_Date
-	{
-		get
-		{
-			return this._Creation_Date;
-		}
-		set
-		{
-			if ((this._Creation_Date != value))
-			{
-				this._Creation_Date = value;
 			}
 		}
 	}
@@ -4705,6 +4544,530 @@ public partial class SortingAndOrgnizeSearchResult
 			if ((this._Creation_Date != value))
 			{
 				this._Creation_Date = value;
+			}
+		}
+	}
+}
+
+public partial class getVistorByIDResult
+{
+	
+	private int _VisitorID;
+	
+	private string _Name;
+	
+	private System.Nullable<bool> _Gender;
+	
+	private string _MobileNo;
+	
+	private string _CivilID;
+	
+	public getVistorByIDResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VisitorID", DbType="Int NOT NULL")]
+	public int VisitorID
+	{
+		get
+		{
+			return this._VisitorID;
+		}
+		set
+		{
+			if ((this._VisitorID != value))
+			{
+				this._VisitorID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NChar(250)")]
+	public string Name
+	{
+		get
+		{
+			return this._Name;
+		}
+		set
+		{
+			if ((this._Name != value))
+			{
+				this._Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Gender", DbType="Bit")]
+	public System.Nullable<bool> Gender
+	{
+		get
+		{
+			return this._Gender;
+		}
+		set
+		{
+			if ((this._Gender != value))
+			{
+				this._Gender = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MobileNo", DbType="NChar(256) NOT NULL", CanBeNull=false)]
+	public string MobileNo
+	{
+		get
+		{
+			return this._MobileNo;
+		}
+		set
+		{
+			if ((this._MobileNo != value))
+			{
+				this._MobileNo = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CivilID", DbType="NChar(256)")]
+	public string CivilID
+	{
+		get
+		{
+			return this._CivilID;
+		}
+		set
+		{
+			if ((this._CivilID != value))
+			{
+				this._CivilID = value;
+			}
+		}
+	}
+}
+
+public partial class GetGroupsByUserIDResult
+{
+	
+	private string _User_Name;
+	
+	private string _User_Role;
+	
+	private bool _User_Is_Locked;
+	
+	private int _Group_ID;
+	
+	private string _Group_Name;
+	
+	public GetGroupsByUserIDResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(255)")]
+	public string User_Name
+	{
+		get
+		{
+			return this._User_Name;
+		}
+		set
+		{
+			if ((this._User_Name != value))
+			{
+				this._User_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Role", DbType="NVarChar(50)")]
+	public string User_Role
+	{
+		get
+		{
+			return this._User_Role;
+		}
+		set
+		{
+			if ((this._User_Role != value))
+			{
+				this._User_Role = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Is_Locked", DbType="Bit NOT NULL")]
+	public bool User_Is_Locked
+	{
+		get
+		{
+			return this._User_Is_Locked;
+		}
+		set
+		{
+			if ((this._User_Is_Locked != value))
+			{
+				this._User_Is_Locked = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Group_ID", DbType="Int NOT NULL")]
+	public int Group_ID
+	{
+		get
+		{
+			return this._Group_ID;
+		}
+		set
+		{
+			if ((this._Group_ID != value))
+			{
+				this._Group_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Group_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string Group_Name
+	{
+		get
+		{
+			return this._Group_Name;
+		}
+		set
+		{
+			if ((this._Group_Name != value))
+			{
+				this._Group_Name = value;
+			}
+		}
+	}
+}
+
+public partial class IsValidUserResult
+{
+	
+	private string _User_ID;
+	
+	private string _User_Name;
+	
+	private int _GroupID;
+	
+	private bool _User_Is_Locked;
+	
+	private System.Nullable<System.DateTime> _Creation_Date;
+	
+	public IsValidUserResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_ID", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+	public string User_ID
+	{
+		get
+		{
+			return this._User_ID;
+		}
+		set
+		{
+			if ((this._User_ID != value))
+			{
+				this._User_ID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Name", DbType="NVarChar(255)")]
+	public string User_Name
+	{
+		get
+		{
+			return this._User_Name;
+		}
+		set
+		{
+			if ((this._User_Name != value))
+			{
+				this._User_Name = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GroupID", DbType="Int NOT NULL")]
+	public int GroupID
+	{
+		get
+		{
+			return this._GroupID;
+		}
+		set
+		{
+			if ((this._GroupID != value))
+			{
+				this._GroupID = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_User_Is_Locked", DbType="Bit NOT NULL")]
+	public bool User_Is_Locked
+	{
+		get
+		{
+			return this._User_Is_Locked;
+		}
+		set
+		{
+			if ((this._User_Is_Locked != value))
+			{
+				this._User_Is_Locked = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Creation_Date", DbType="DateTime")]
+	public System.Nullable<System.DateTime> Creation_Date
+	{
+		get
+		{
+			return this._Creation_Date;
+		}
+		set
+		{
+			if ((this._Creation_Date != value))
+			{
+				this._Creation_Date = value;
+			}
+		}
+	}
+}
+
+public partial class GeneralCollectionStatResult
+{
+	
+	private System.Nullable<int> _Count_Books;
+	
+	private System.Nullable<int> _Count_Visitors;
+	
+	public GeneralCollectionStatResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Books", DbType="Int")]
+	public System.Nullable<int> Count_Books
+	{
+		get
+		{
+			return this._Count_Books;
+		}
+		set
+		{
+			if ((this._Count_Books != value))
+			{
+				this._Count_Books = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Visitors", DbType="Int")]
+	public System.Nullable<int> Count_Visitors
+	{
+		get
+		{
+			return this._Count_Visitors;
+		}
+		set
+		{
+			if ((this._Count_Visitors != value))
+			{
+				this._Count_Visitors = value;
+			}
+		}
+	}
+}
+
+public partial class PhotocopyStatResult
+{
+	
+	private System.Nullable<int> _Count_Books;
+	
+	private System.Nullable<int> _Count_Pages;
+	
+	private System.Nullable<int> _Count_Visitors;
+	
+	public PhotocopyStatResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Books", DbType="Int")]
+	public System.Nullable<int> Count_Books
+	{
+		get
+		{
+			return this._Count_Books;
+		}
+		set
+		{
+			if ((this._Count_Books != value))
+			{
+				this._Count_Books = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Pages", DbType="Int")]
+	public System.Nullable<int> Count_Pages
+	{
+		get
+		{
+			return this._Count_Pages;
+		}
+		set
+		{
+			if ((this._Count_Pages != value))
+			{
+				this._Count_Pages = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Visitors", DbType="Int")]
+	public System.Nullable<int> Count_Visitors
+	{
+		get
+		{
+			return this._Count_Visitors;
+		}
+		set
+		{
+			if ((this._Count_Visitors != value))
+			{
+				this._Count_Visitors = value;
+			}
+		}
+	}
+}
+
+public partial class SortingAndOrgnizeStatResult
+{
+	
+	private System.Nullable<int> _Count_Binding;
+	
+	private System.Nullable<int> _Count_Exclude;
+	
+	private System.Nullable<int> _Count_Reindex;
+	
+	private System.Nullable<int> _Count_Relabel;
+	
+	public SortingAndOrgnizeStatResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Binding", DbType="Int")]
+	public System.Nullable<int> Count_Binding
+	{
+		get
+		{
+			return this._Count_Binding;
+		}
+		set
+		{
+			if ((this._Count_Binding != value))
+			{
+				this._Count_Binding = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Exclude", DbType="Int")]
+	public System.Nullable<int> Count_Exclude
+	{
+		get
+		{
+			return this._Count_Exclude;
+		}
+		set
+		{
+			if ((this._Count_Exclude != value))
+			{
+				this._Count_Exclude = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Reindex", DbType="Int")]
+	public System.Nullable<int> Count_Reindex
+	{
+		get
+		{
+			return this._Count_Reindex;
+		}
+		set
+		{
+			if ((this._Count_Reindex != value))
+			{
+				this._Count_Reindex = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Relabel", DbType="Int")]
+	public System.Nullable<int> Count_Relabel
+	{
+		get
+		{
+			return this._Count_Relabel;
+		}
+		set
+		{
+			if ((this._Count_Relabel != value))
+			{
+				this._Count_Relabel = value;
+			}
+		}
+	}
+}
+
+public partial class BooksReceivedStatResult
+{
+	
+	private System.Nullable<int> _Count_Copies;
+	
+	private System.Nullable<int> _Count_Titles;
+	
+	public BooksReceivedStatResult()
+	{
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Copies", DbType="Int")]
+	public System.Nullable<int> Count_Copies
+	{
+		get
+		{
+			return this._Count_Copies;
+		}
+		set
+		{
+			if ((this._Count_Copies != value))
+			{
+				this._Count_Copies = value;
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count_Titles", DbType="Int")]
+	public System.Nullable<int> Count_Titles
+	{
+		get
+		{
+			return this._Count_Titles;
+		}
+		set
+		{
+			if ((this._Count_Titles != value))
+			{
+				this._Count_Titles = value;
 			}
 		}
 	}

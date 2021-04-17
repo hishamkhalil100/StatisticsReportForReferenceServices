@@ -4,10 +4,13 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="Server">
     <style type="text/css">
         .rblStyle label {
-            float: left;
+            float: right;
             margin-right: 15px;
         }
-
+        .rblStyle div {
+            float: right;
+         
+        }
         .textTable th {
             text-align: center;
         }
@@ -67,10 +70,8 @@
                             </div>
                             <div class="control-group">
                                 <label class="control-label">نوع الصلاحية*</label>
-                                <asp:RadioButtonList ID="rblRole" runat="server" RepeatDirection="Vertical" Enabled="true" CssClass="rblStyle">
-                                    <asp:ListItem Text="مدير" Value="admin"></asp:ListItem>
-                                    <asp:ListItem Selected="True" Text="موظف" Value="user"></asp:ListItem>
-                                </asp:RadioButtonList>
+                                <asp:CheckBoxList ID="rblRole" runat="server" RepeatDirection="Vertical"  Enabled="true" CssClass="rblStyle">
+                                </asp:CheckBoxList>
                             </div>
                             <div class="form-actions">
                                 <asp:Button ID="btnReset" runat="server" Text="تفريغ الحقول" CssClass="btn btn-info" OnClick="btnReset_Click" />

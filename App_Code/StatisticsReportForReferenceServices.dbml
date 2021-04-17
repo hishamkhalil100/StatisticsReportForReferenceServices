@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="StatisticsReportForReferenceServices" Class="StatisticsReportForReferenceServicesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=sql-clus;Initial Catalog=StatisticsReportForReferenceServices;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StatisticsReportForReferenceServicesConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=.;Initial Catalog=StatisticsReportForReferenceServices;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="StatisticsReportForReferenceServicesConnectionString" Provider="System.Data.SqlClient" />
   <Function Name="dbo.GetAllDepartments" Method="GetAllDepartments">
     <ElementType Name="GetAllDepartmentsResult">
       <Column Name="Department_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
@@ -41,26 +41,6 @@
     <ElementType Name="GetRoleByUserIDResult">
       <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.getVistorByID" Method="getVistorByID">
-    <Parameter Name="Vistor_ID" Parameter="vistor_ID" Type="System.String" DbType="VarChar(255)" />
-    <ElementType Name="getVistorByIDResult">
-      <Column Name="ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Name" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Gender" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NationalID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.IsValidUser" Method="IsValidUser">
-    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
-    <ElementType Name="IsValidUserResult">
-      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </ElementType>
   </Function>
   <Function Name="dbo.ItemsSearch" Method="ItemsSearch">
@@ -577,6 +557,72 @@
       <Column Name="NoBinding" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="NoExclude" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.getVistorByID" Method="getVistorByID">
+    <Parameter Name="Vistor_ID" Parameter="vistor_ID" Type="System.String" DbType="VarChar(255)" />
+    <ElementType Name="getVistorByIDResult">
+      <Column Name="VisitorID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NChar(250)" CanBeNull="true" />
+      <Column Name="Gender" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="MobileNo" Type="System.String" DbType="NChar(256) NOT NULL" CanBeNull="false" />
+      <Column Name="CivilID" Type="System.String" DbType="NChar(256)" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GetGroupsByUserID" Method="GetGroupsByUserID">
+    <Parameter Name="USER_ID" Parameter="uSER_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="GetGroupsByUserIDResult">
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="User_Role" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Group_ID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Group_Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.IsValidUser" Method="IsValidUser">
+    <Parameter Name="User_ID" Parameter="user_ID" Type="System.String" DbType="NVarChar(50)" />
+    <ElementType Name="IsValidUserResult">
+      <Column Name="User_ID" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="User_Name" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="GroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="User_Is_Locked" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="Creation_Date" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.GeneralCollectionStat" Method="GeneralCollectionStat">
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Counter_ID" Parameter="counter_ID" Type="System.Int32" DbType="Int" />
+    <ElementType Name="GeneralCollectionStatResult">
+      <Column Name="Count_Books" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Visitors" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.PhotocopyStat" Method="PhotocopyStat">
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="PhotocopyStatResult">
+      <Column Name="Count_Books" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Pages" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Visitors" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.SortingAndOrgnizeStat" Method="SortingAndOrgnizeStat">
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="SortingAndOrgnizeStatResult">
+      <Column Name="Count_Binding" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Exclude" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Reindex" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Relabel" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
+  <Function Name="dbo.BooksReceivedStat" Method="BooksReceivedStat">
+    <Parameter Name="Receive_Date" Parameter="receive_Date" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="Finsh_date" Parameter="finsh_date" Type="System.DateTime" DbType="DateTime" />
+    <ElementType Name="BooksReceivedStatResult">
+      <Column Name="Count_Copies" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Count_Titles" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>
 </Database>

@@ -27,11 +27,11 @@ public class WebService
         var q = objDataContext.getVistorByID(id).ToList<getVistorByIDResult>();
         foreach (var item in q)
         {
-            v.Gender = item.Gender;
+            if (item.Gender != null) v.Gender = (bool) item.Gender;
             v.Name = item.Name;
-            v.NationalID = item.NationalID;
-            v.Mobile = item.Mobile;
-            v.vistor_id = item.ID;
+            v.NationalID = item.CivilID;
+            v.Mobile = item.MobileNo;
+            v.vistor_id = item.VisitorID;
         }
         return v;
 	}

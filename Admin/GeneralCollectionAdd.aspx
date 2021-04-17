@@ -249,6 +249,7 @@
                                                     <asp:ListItem Text ="كاونتر 4" Value ="4" />
                                                     <asp:ListItem Text ="كاونتر 5" Value ="5" />
                                                     <asp:ListItem Text ="كاونتر 6" Value ="6" />
+                                                    <asp:ListItem Text ="كاونتر 7" Value ="7" />
                                                    
                                                 </asp:DropDownList>
                                                 <asp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="يجب ادخال عدد الكتب المستخرجة " ControlToValidate="txtNoOfBooks" ValidationGroup="AddGroup"></asp:RequiredFieldValidator>

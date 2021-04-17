@@ -6,13 +6,30 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.DirectoryServices;
 using System.DirectoryServices.AccountManagement;
+using System.Web.UI.HtmlControls;
+
 public partial class Admin_UsersManagement : System.Web.UI.Page
 {
     #region Events
     protected void Page_Load(object sender, EventArgs e)
     {
+        HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liUsersManagement");
+        ControlID.Attributes["class"] = "has-sub active";
+        Helper.GroupsEnum[] allowedGroups =
+            {Helper.GroupsEnum.Admin,
+                Helper.GroupsEnum.GeneralCollectionAdmin,
+                Helper.GroupsEnum.PhotocopyAdmin,
+                Helper.GroupsEnum.ItemsAdmin,
+                Helper.GroupsEnum.SortingAndOrganizeAdmin,
+                Helper.GroupsEnum.BooksReceivedAdmin
+            };
+        if (!Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+            Response.Redirect("/Default.aspx");
+        }
         if (!IsPostBack)
         {
+            ManageGroups();
             GetAllDepartments();
             GetRealDept();
             BindData();
@@ -244,6 +261,7 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
     }
     private void getData()
     {
+        ManageGroups();
         if (ViewState["ID"] != null)
         {
             string ID = ViewState["ID"].ToString();
@@ -257,10 +275,90 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
                 ddlUsers.SelectedValue = ID;
                 ddlRealDep.SelectedValue = item.DepartmentID.ToString();
             }
+
+            rblRole.Items.FindByValue(((int)Helper.GroupsEnum.Admin).ToString()).Selected = true;
             ddlDepartments.Enabled = false;
             ddlUsers.Enabled = false;
         }
     }
+
+    private void ManageGroups()
+    {
+        rblRole.Items.Clear();
+        Helper.GroupsEnum[] allowedGroups =
+        {Helper.GroupsEnum.Admin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+            rblRole.Items.Add(new ListItem("مدير النظام", ((int) Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("مدير الخدمة المرجعية", ((int) Helper.GroupsEnum.ItemsAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int) Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("مدير التصوير", ((int) Helper.GroupsEnum.PhotocopyAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التصوير", ((int) Helper.GroupsEnum.Photocopy).ToString()));
+            rblRole.Items.Add(new ListItem("مدير التنظيم والإدارة ", ((int) Helper.GroupsEnum.SortingAndOrganizeAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int) Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("مدير استلام الكتب", ((int) Helper.GroupsEnum.BooksReceivedAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف استلام الكتب", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
+            return;
+        }
+        allowedGroups = new Helper.GroupsEnum[]
+        {Helper.GroupsEnum.ItemsAdmin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+           
+            rblRole.Items.Add(new ListItem("مدير الخدمة المرجعية", ((int)Helper.GroupsEnum.ItemsAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int)Helper.GroupsEnum.Admin).ToString()));
+            return;
+        }
+        allowedGroups = new Helper.GroupsEnum[]
+        {Helper.GroupsEnum.SortingAndOrganizeAdmin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+
+            rblRole.Items.Add(new ListItem("مدير التنظيم والإدارة ", ((int)Helper.GroupsEnum.SortingAndOrganizeAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int)Helper.GroupsEnum.Admin).ToString()));
+            return;
+        }
+        allowedGroups = new Helper.GroupsEnum[]
+        {Helper.GroupsEnum.BooksReceivedAdmin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+
+            rblRole.Items.Add(new ListItem("مدير استلام الكتب", ((int)Helper.GroupsEnum.BooksReceivedAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف استلام الكتب", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
+            return;
+        }
+        allowedGroups = new Helper.GroupsEnum[]
+        {Helper.GroupsEnum.GeneralCollectionAdmin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+
+            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
+            return;
+        }
+        allowedGroups = new Helper.GroupsEnum[]
+        {Helper.GroupsEnum.PhotocopyAdmin
+        };
+        if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
+        {
+
+            rblRole.Items.Add(new ListItem("مدير التصوير", ((int)Helper.GroupsEnum.PhotocopyAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التصوير", ((int)Helper.GroupsEnum.Photocopy).ToString()));
+            return;
+        }
+      
+        
+
+
+    }
+
     private void Reset()
     {
         if (ViewState["ID"] != null)
@@ -273,7 +371,7 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
             GetAllUsersByDepartment();
             GetRealDept();
             txtUserName.Text = string.Empty;
-            rblRole.SelectedIndex = 1;// employee
+            ManageGroups();
         }
     }
     #endregion

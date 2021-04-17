@@ -4,14 +4,39 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 
 public partial class ItemsSearch : System.Web.UI.Page
 {
+    private string userID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (IsPostBack)
         {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liItemsSearch");
+            ControlID.Attributes["class"] = "has-sub active";
+            var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
+            if (protectedText != null)
+            {
+                userID = new CookieSecurityProvider().Unprotect(
+                    protectedText: protectedText);
+                Helper.GroupsEnum[] allowedGroups =
+                {
+                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.ItemsAdmin
+                };
+                if (!Helper.IsAuthorize(
+                    userGroups: new CookieSecurityProvider().Unprotect(
+                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                {
+                    Response.Redirect(url: "/Default.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect(url: "/Default.aspx");
+            }
             DataPagerdlItems.PageSize = int.Parse(ddlpgSize.SelectedValue.ToString());
         }
         else
@@ -144,7 +169,7 @@ public partial class ItemsSearch : System.Web.UI.Page
     }
     private void bindData()
     {
-        var qu = new StatisticsReportForReferenceServicesDataContext().UsersSearch(Request.Cookies["UserWebsiteId"].Value.ToString()).Single();
+        var qu = new StatisticsReportForReferenceServicesDataContext().UsersSearch(userID).Single();
 
         DateHG cal = new DateHG();
         DateTime? startDate;
@@ -187,7 +212,7 @@ public partial class ItemsSearch : System.Web.UI.Page
             divCustomerName.Attributes.Add("class", "span4");
 
 
-            var q = new StatisticsReportForReferenceServicesDataContext().ItemsSearchWithUsers(null, Request.Cookies["UserWebsiteId"].Value.ToString(), txtCustomerName.Text.Trim(), null, startDate, endDate, null, null, null, txtUserName.Text.Trim(), null, null, null, null, null, null, null, null, null, null).ToList<ItemsSearchWithUsersResult>();
+            var q = new StatisticsReportForReferenceServicesDataContext().ItemsSearchWithUsers(null,userID, txtCustomerName.Text.Trim(), null, startDate, endDate, null, null, null, txtUserName.Text.Trim(), null, null, null, null, null, null, null, null, null, null).ToList<ItemsSearchWithUsersResult>();
             dlItems.DataSource = q;
             dlItems.DataBind();
         }

@@ -1,13 +1,40 @@
 ﻿using System;
 using System.Globalization;
 using System.Linq;
+using System.Web.UI.HtmlControls;
 
-public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
+public partial class admin_orignizationandsortingAdd : System.Web.UI.Page
 {
+    private string userID;
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liOrignizationAndSorting");
+            ControlID.Attributes["class"] = "has-sub active";
+            var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
+            if (protectedText != null)
+            {
+                userID = new CookieSecurityProvider().Unprotect(
+                    protectedText: protectedText);
+                Helper.GroupsEnum[] allowedGroups =
+                {
+                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.SortingAndOrganizeAdmin,
+                    Helper.GroupsEnum.SortingAndOrganize
+                };
+                if (!Helper.IsAuthorize(
+                    userGroups: new CookieSecurityProvider().Unprotect(
+                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                {
+                    Response.Redirect(url: "/Default.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect(url: "/Default.aspx");
+            }
+
             if (!string.IsNullOrEmpty(Request["num"]))
             {
                 try
@@ -127,7 +154,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 
 
         var q = new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeAdd(
-            Request.Cookies["UserWebsiteId"].Value.ToString(), startDate,
+            userID, startDate,
             numOfReindex, numOfLabel, numOfRebinding,
             numOfExclude,
             ref result).Single<SortingAndOrgnizeAddResult>();
@@ -157,7 +184,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
 
 
         new StatisticsReportForReferenceServicesDataContext().SortingAndOrgnizeEdit(
-            int.Parse(Request["num"].ToString()), Request.Cookies["UserWebsiteId"].Value.ToString(),
+            int.Parse(Request["num"].ToString()), userID,
             startDate, numOfReindex, numOfLabel, numOfRebinding, numOfExclude, ref result);
         return result;
     }
@@ -180,7 +207,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
     {
 
         StatisticsReportForReferenceServicesDataContext srfs = new StatisticsReportForReferenceServicesDataContext();
-        var qu = srfs.UsersSearch(Request.Cookies["UserWebsiteId"].Value.ToString()).Single<UsersSearchResult>();
+        var qu = srfs.UsersSearch(userID).Single<UsersSearchResult>();
         DateHG cal = new DateHG();
         if (qu.User_Role.Equals("admin"))
         {
@@ -205,7 +232,7 @@ public partial class Admin_OrignizationAndSorting : System.Web.UI.Page
         {
             var q = srfs
                 .SortingAndOrgnizeSearchWithUsers(int.Parse(Request["num"].ToString()),
-                    Request.Cookies["UserWebsiteId"].Value.ToString(), null)
+                    userID, null)
                 .Single<SortingAndOrgnizeSearchWithUsersResult>();
 
             txtBinding.Value = q.NoBinding.ToString();
