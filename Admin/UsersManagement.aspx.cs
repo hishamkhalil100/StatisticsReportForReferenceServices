@@ -244,13 +244,54 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
     {
 
         int? result = null;
-        new StatisticsReportForReferenceServicesDataContext().UsersAdd(ddlUsers.SelectedValue.ToString(), txtUserName.Text.ToString(), rblRole.SelectedValue.ToString(), int.Parse(ddlRealDep.SelectedValue.ToString()), ref result);
+        new StatisticsReportForReferenceServicesDataContext().UsersAdd(ddlUsers.SelectedValue.ToString(), txtUserName.Text.ToString(), null, int.Parse(ddlRealDep.SelectedValue.ToString()), ref result);
+        List<ListItem> selected = rblRole.Items.Cast<ListItem>()
+
+         .ToList();
+        foreach (var item in selected)
+        {
+            try
+            {
+                if (item.Selected)
+                {
+                    new StatisticsReportForReferenceServicesDataContext().UsersInGroupsUpdate(ddlUsers.SelectedValue.ToString(), int.Parse(item.Value), true);
+                }
+                
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
         return result;
     }
     private int? Edit()
     {
         int? result = null;
-        new StatisticsReportForReferenceServicesDataContext().UsersEdit(ViewState["ID"].ToString(), txtUserName.Text.ToString(), rblRole.SelectedValue.ToString(), int.Parse(ddlRealDep.SelectedValue.ToString()), ref result);
+        new StatisticsReportForReferenceServicesDataContext().UsersEdit(ViewState["ID"].ToString(), txtUserName.Text.ToString(), null, int.Parse(ddlRealDep.SelectedValue.ToString()), ref result);
+        List<ListItem> selected = rblRole.Items.Cast<ListItem>()
+
+        .ToList();
+        foreach (var item in selected)
+        {
+            try
+            {
+                if (item.Selected)
+                {
+                    new StatisticsReportForReferenceServicesDataContext().UsersInGroupsUpdate(ViewState["ID"].ToString(), int.Parse(item.Value), true);
+            }
+                else
+                {
+                    new StatisticsReportForReferenceServicesDataContext().UsersInGroupsUpdate(ViewState["ID"].ToString(), int.Parse(item.Value), false);
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+            
+        }
         return result;
     }
     private void BindData()
@@ -269,16 +310,30 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
             foreach (var item in QUERY)
             {
                 txtUserName.Text = item.User_Name;
-                rblRole.SelectedValue = item.User_Role;
+
                 ddlDepartments.SelectedValue = ActiveDirectoryManagment.GetDepartment(ID);
                 GetAllUsersByDepartment();
                 ddlUsers.SelectedValue = ID;
                 ddlRealDep.SelectedValue = item.DepartmentID.ToString();
             }
-
-            rblRole.Items.FindByValue(((int)Helper.GroupsEnum.Admin).ToString()).Selected = true;
+            BindGroups(ID);
+            //   rblRole.Items.FindByValue(((int)Helper.GroupsEnum.Admin).ToString()).Selected = true;
             ddlDepartments.Enabled = false;
             ddlUsers.Enabled = false;
+        }
+    }
+    private void BindGroups(string Id)
+    {
+        var q = new StatisticsReportForReferenceServicesDataContext().GetGroupsByUserID(Id).ToList();
+        foreach (var item in q)
+        {
+            try
+            {
+                rblRole.Items.FindByValue((item.Group_ID).ToString()).Selected = true;
+            }
+            catch (Exception)
+            {
+            }
         }
     }
 
@@ -290,17 +345,17 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
         };
         if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
         {
-            rblRole.Items.Add(new ListItem("مدير النظام", ((int) Helper.GroupsEnum.Admin).ToString()));
-            rblRole.Items.Add(new ListItem("مدير الخدمة المرجعية", ((int) Helper.GroupsEnum.ItemsAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int) Helper.GroupsEnum.Admin).ToString()));
-            rblRole.Items.Add(new ListItem("مدير التصوير", ((int) Helper.GroupsEnum.PhotocopyAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف التصوير", ((int) Helper.GroupsEnum.Photocopy).ToString()));
-            rblRole.Items.Add(new ListItem("مدير التنظيم والإدارة ", ((int) Helper.GroupsEnum.SortingAndOrganizeAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int) Helper.GroupsEnum.Admin).ToString()));
-            rblRole.Items.Add(new ListItem("مدير استلام الكتب", ((int) Helper.GroupsEnum.BooksReceivedAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف استلام الكتب", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
-            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
-            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int) Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("مدير النظام", ((int)Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("مدير الخدمة المرجعية", ((int)Helper.GroupsEnum.ItemsAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int)Helper.GroupsEnum.Items).ToString()));
+            rblRole.Items.Add(new ListItem("مدير التصوير", ((int)Helper.GroupsEnum.PhotocopyAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التصوير", ((int)Helper.GroupsEnum.Photocopy).ToString()));
+            rblRole.Items.Add(new ListItem("مدير التنظيم والإدارة ", ((int)Helper.GroupsEnum.SortingAndOrganizeAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int)Helper.GroupsEnum.SortingAndOrganize).ToString()));
+            rblRole.Items.Add(new ListItem("مدير استلام الكتب", ((int)Helper.GroupsEnum.BooksReceivedAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف استلام الكتب", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.GeneralCollectionAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.GeneralCollection).ToString()));
             return;
         }
         allowedGroups = new Helper.GroupsEnum[]
@@ -308,9 +363,9 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
         };
         if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
         {
-           
+
             rblRole.Items.Add(new ListItem("مدير الخدمة المرجعية", ((int)Helper.GroupsEnum.ItemsAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int)Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف الخدمة المرجعية", ((int)Helper.GroupsEnum.Items).ToString()));
             return;
         }
         allowedGroups = new Helper.GroupsEnum[]
@@ -320,7 +375,7 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
         {
 
             rblRole.Items.Add(new ListItem("مدير التنظيم والإدارة ", ((int)Helper.GroupsEnum.SortingAndOrganizeAdmin).ToString()));
-            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int)Helper.GroupsEnum.Admin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف التنظيم والإدارة", ((int)Helper.GroupsEnum.SortingAndOrganize).ToString()));
             return;
         }
         allowedGroups = new Helper.GroupsEnum[]
@@ -339,8 +394,8 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
         if (Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
         {
 
-            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
-            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.BooksReceived).ToString()));
+            rblRole.Items.Add(new ListItem("مدير خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.GeneralCollectionAdmin).ToString()));
+            rblRole.Items.Add(new ListItem("موظف خدمة المستفدين المجموعات العامة", ((int)Helper.GroupsEnum.GeneralCollection).ToString()));
             return;
         }
         allowedGroups = new Helper.GroupsEnum[]
@@ -353,8 +408,8 @@ public partial class Admin_UsersManagement : System.Web.UI.Page
             rblRole.Items.Add(new ListItem("موظف التصوير", ((int)Helper.GroupsEnum.Photocopy).ToString()));
             return;
         }
-      
-        
+
+
 
 
     }

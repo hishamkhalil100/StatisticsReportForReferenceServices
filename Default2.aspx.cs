@@ -31,7 +31,9 @@ public partial class Default2 : System.Web.UI.Page
         // //Commit the changes to the group.
         ////  group.CommitChanges();
 
-        Response.Write(validateUser("", "").ToString() );
+        Response.Write(validateUser("dlibrary", "P@ssw0rd@DL123").ToString() );
+      //  ActiveDirectoryManagment ac = new ActiveDirectoryManagment();
+       // ac.GetADUsersByGroup("CN=REFERENCE SERVICES,OU=REFERENCE SRVCS,OU=G.D.U.S,OU=KFNL,DC=kfnl,DC=gov,DC=sa");
         //getUser();
         //validateUser("", "");
     }

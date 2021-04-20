@@ -449,6 +449,13 @@ public partial class StatisticsReportForReferenceServicesDataContext : System.Da
 		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), receive_Date, finsh_date);
 		return ((ISingleResult<BooksReceivedStatResult>)(result.ReturnValue));
 	}
+	
+	[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.UsersInGroupsUpdate")]
+	public int UsersInGroupsUpdate([global::System.Data.Linq.Mapping.ParameterAttribute(Name="User_ID", DbType="NVarChar(50)")] string user_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Group_ID", DbType="Int")] System.Nullable<int> group_ID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Status", DbType="Bit")] System.Nullable<bool> status)
+	{
+		IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), user_ID, group_ID, status);
+		return ((int)(result.ReturnValue));
+	}
 }
 
 public partial class GetAllDepartmentsResult
