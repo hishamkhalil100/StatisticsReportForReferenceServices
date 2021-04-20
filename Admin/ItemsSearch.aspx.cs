@@ -13,7 +13,7 @@ public partial class ItemsSearch : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (IsPostBack)
+        if (!IsPostBack)
         {
             HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liItemsSearch");
             ControlID.Attributes["class"] = "has-sub active";
@@ -190,7 +190,19 @@ public partial class ItemsSearch : System.Web.UI.Page
         {
             endDate = null;
         }
-        if (qu.User_Role.Equals("admin"))
+
+        bool isAdmin = false;
+        var userGroups = new StatisticsReportForReferenceServicesDataContext().GetGroupsByUserID(userID).ToList();
+        foreach (var item in userGroups )
+        {
+            if (item.Group_ID == (int)Helper.GroupsEnum.Admin || item.Group_ID == (int)Helper.GroupsEnum.ItemsAdmin)
+            {
+                isAdmin = true;
+                break;
+            }
+            
+        }
+        if (isAdmin)
         {
             var q = new StatisticsReportForReferenceServicesDataContext().ItemsSearchWithUsers(null, null, txtCustomerName.Text.Trim(), null, startDate, endDate, null, null, null, txtUserName.Text.Trim(), null, null, null, null, null, null, null, null, null, null).ToList<ItemsSearchWithUsersResult>();;
             if (!string.IsNullOrEmpty(ddlDepartment.SelectedValue.ToString()))

@@ -245,7 +245,18 @@ public partial class Admin_ItemsAdd : System.Web.UI.Page
         StatisticsReportForReferenceServicesDataContext srfs = new StatisticsReportForReferenceServicesDataContext();
         var qu = srfs.UsersSearch(userID).Single<UsersSearchResult>();
         DateHG cal = new DateHG();
-        if (qu.User_Role.Equals("admin"))
+        bool isAdmin = false;
+        var userGroups = new StatisticsReportForReferenceServicesDataContext().GetGroupsByUserID(userID).ToList();
+        foreach (var item in userGroups)
+        {
+            if (item.Group_ID == (int)Helper.GroupsEnum.Admin || item.Group_ID == (int)Helper.GroupsEnum.ItemsAdmin)
+            {
+                isAdmin = true;
+                break;
+            }
+
+        }
+        if (isAdmin)
         {
             var q = srfs.ItemsSearchWithUsers(int.Parse(Request["num"].ToString()), null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null).Single<ItemsSearchWithUsersResult>();
             txtUserName.Value = q.Customer_Name.ToString();
