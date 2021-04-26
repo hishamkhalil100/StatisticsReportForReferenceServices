@@ -66,7 +66,7 @@ public partial class _Default : System.Web.UI.Page
 
                 userWebsiteId.Value = new CookieSecurityProvider().Protect(qUserId);
                 securityType.Value = new CookieSecurityProvider().Protect(qGroups);
-                userWebsiteId.Secure = true;
+                //userWebsiteId.Secure = true;
                 
                 Response.Cookies.Add(userWebsiteId);
                 Response.Cookies.Add(securityType);

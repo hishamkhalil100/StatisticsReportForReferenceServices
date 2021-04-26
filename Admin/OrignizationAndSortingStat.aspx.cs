@@ -9,18 +9,47 @@ using System.Web.UI.WebControls;
 
 public partial class Admin_OrignizationAndSortingStat : System.Web.UI.Page
 {
+    private string userID;
+
+    protected override void OnPreLoad(EventArgs e)
+    {
+        base.OnPreLoad(e);
+        try
+        {
+            var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
+            if (protectedText != null)
+            {
+                userID = new CookieSecurityProvider().Unprotect(
+                    protectedText: protectedText);
+                Helper.GroupsEnum[] allowedGroups =
+                    {Helper.GroupsEnum.Admin, Helper.GroupsEnum.SortingAndOrganizeAdmin};
+                if (!Helper.IsAuthorize(
+                    userGroups: new CookieSecurityProvider().Unprotect(
+                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                {
+                    Response.Redirect(url: "/Default.aspx");
+                }
+            }
+            else
+            {
+                Response.Redirect(url: "/Default.aspx");
+            }
+        }
+        catch (Exception)
+        {
+            Response.Redirect(url: "/Default.aspx");
+        }
+
+
+    }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         if (!IsPostBack)
         {
             HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liOrignizationAndSortingStat");
             ControlID.Attributes["class"] = "has-sub active";
-            Helper.GroupsEnum[] allowedGroups =
-                {Helper.GroupsEnum.Admin, Helper.GroupsEnum.SortingAndOrganizeAdmin};
-            if (Request.Cookies["SecurityType"] != null && !Helper.IsAuthorize(new CookieSecurityProvider().Unprotect(Request.Cookies["SecurityType"].Value), allowedGroups))
-            {
-                Response.Redirect("/Default.aspx");
-            }
+            
             try
             {
                 bindData();

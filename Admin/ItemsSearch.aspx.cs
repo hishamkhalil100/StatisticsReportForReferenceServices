@@ -10,13 +10,11 @@ using System.Web.UI.WebControls;
 public partial class ItemsSearch : System.Web.UI.Page
 {
     private string userID;
-
-    protected void Page_Load(object sender, EventArgs e)
+    protected override void OnPreLoad(EventArgs e)
     {
-        if (!IsPostBack)
+        base.OnPreLoad(e);
+        try
         {
-            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liItemsSearch");
-            ControlID.Attributes["class"] = "has-sub active";
             var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
             if (protectedText != null)
             {
@@ -37,6 +35,22 @@ public partial class ItemsSearch : System.Web.UI.Page
             {
                 Response.Redirect(url: "/Default.aspx");
             }
+        }
+        catch (Exception)
+        {
+            Response.Redirect(url: "/Default.aspx");
+        }
+
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        if (!IsPostBack)
+        {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liItemsSearch");
+            ControlID.Attributes["class"] = "has-sub active";
+          
             DataPagerdlItems.PageSize = int.Parse(ddlpgSize.SelectedValue.ToString());
         }
         else

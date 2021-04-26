@@ -10,14 +10,11 @@ using System.Web.UI.WebControls;
 public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
 {
      string userID;
-
-    protected void Page_Load(object sender, EventArgs e)
+    protected override void OnPreLoad(EventArgs e)
     {
-       
-        if (!IsPostBack)
+        base.OnPreLoad(e);
+        try
         {
-            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liGeneralCollectionAdd");
-            ControlID.Attributes["class"] = "has-sub active";
             var protectedText = Request.Cookies[name: "UserWebsiteId"].Value;
             if (protectedText != null)
             {
@@ -25,12 +22,12 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
                     protectedText: protectedText);
                 Helper.GroupsEnum[] allowedGroups =
                 {
-                    Helper.GroupsEnum.Admin, Helper.GroupsEnum.GeneralCollectionAdmin,
-                    Helper.GroupsEnum.GeneralCollection
-                };
+                     Helper.GroupsEnum.Admin, Helper.GroupsEnum.GeneralCollectionAdmin,
+                     Helper.GroupsEnum.GeneralCollection
+                 };
                 if (!Helper.IsAuthorize(
-                    userGroups: new CookieSecurityProvider().Unprotect(
-                        protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
+                     userGroups: new CookieSecurityProvider().Unprotect(
+                         protectedText: Request.Cookies[name: "SecurityType"].Value), allowedGroups: allowedGroups))
                 {
                     Response.Redirect(url: "/Default.aspx");
                 }
@@ -39,7 +36,22 @@ public partial class Admin_GeneralCollectionAdd : System.Web.UI.Page
             {
                 Response.Redirect(url: "/Default.aspx");
             }
-        
+        }
+        catch (Exception)
+        {
+            Response.Redirect(url: "/Default.aspx");
+        }
+
+
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+       
+        if (!IsPostBack)
+        {
+            HtmlGenericControl ControlID = (HtmlGenericControl)Master.FindControl("liGeneralCollectionAdd");
+            ControlID.Attributes["class"] = "has-sub active";    
 
             if (!string.IsNullOrEmpty(Request["num"]))
             {
