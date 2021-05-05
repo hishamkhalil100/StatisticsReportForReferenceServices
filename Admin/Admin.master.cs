@@ -103,6 +103,7 @@ public partial class Admin_Admin : System.Web.UI.MasterPage
         liItemsSearch.Visible = false;
         liUsersManagement.Visible = false;
         liStatistics.Visible = false;
+        liBooksFromIndexAdd.Visible = false;
         liGeneralCollectionAdd.Visible = false;
         liOrignizationAndSorting.Visible = false;
         liPhotocopyAdd.Visible = false;
